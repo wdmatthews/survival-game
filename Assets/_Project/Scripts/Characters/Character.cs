@@ -18,17 +18,15 @@ namespace Project.Characters
 
         protected void FixedUpdate()
         {
-            bool isGrounded = Physics.Raycast(_groundCheckPoint.position, -transform.up, _groundCheckDistance, _groundLayers);
+            bool isGrounded = Physics.Raycast(_groundCheckPoint.position, -transform.up,
+                _groundCheckDistance, _groundLayers);
 
             _controller.Move(Time.fixedDeltaTime * _velocity);
 
-            if (!isGrounded) _velocity.y += _gravityScale * Physics.gravity.y;
-            else _velocity.y = 0;
+            if (isGrounded) _velocity.y = 0;
+            else _velocity.y += _gravityScale * Physics.gravity.y;
 
-            if (_shouldJump && isGrounded)
-            {
-                _velocity.y = _jumpSpeed;
-            }
+            if (_shouldJump && isGrounded) _velocity.y = _jumpSpeed;
         }
 
         protected void Move(Vector2 direction)
