@@ -7,7 +7,12 @@ namespace Project.Characters
     {
         public void Move(InputAction.CallbackContext context)
         {
-            _moveDirection = context.ReadValue<Vector2>();
+            Move(context.ReadValue<Vector2>());
+        }
+
+        public void Jump(InputAction.CallbackContext context)
+        {
+            _shouldJump = Mathf.Approximately(context.ReadValue<float>(), 1);
         }
     }
 }
