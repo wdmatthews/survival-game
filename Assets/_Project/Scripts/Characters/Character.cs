@@ -37,6 +37,12 @@ namespace Project.Characters
                 _velocity.y,
                 _moveSpeed * isoDirection.z
             );
+
+            if (!Mathf.Approximately(direction.x, 0) || !Mathf.Approximately(direction.y, 0))
+            {
+                float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
+                transform.eulerAngles = new Vector3(0, -45 - angle, 0);
+            }
         }
     }
 }
