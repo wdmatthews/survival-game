@@ -58,6 +58,7 @@ MonoBehaviour:
     m_Bits: 256
   _controller: {fileID: 1995746023397850507}
   _groundCheckPoint: {fileID: 1995746023621547230}
+  _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
   m_ObjectHideFlags: 0
