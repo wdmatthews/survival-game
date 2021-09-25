@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
-  m_Name: Example Tool
+  m_Name: Axe
   m_EditorClassIdentifier: 
   SomeDataSpecificToTool: 2

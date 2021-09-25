@@ -12,7 +12,12 @@ namespace Project.Characters
 
         public void Jump(InputAction.CallbackContext context)
         {
-            _shouldJump = Mathf.Approximately(context.ReadValue<float>(), 1);
+            _shouldJump = context.performed;
+        }
+
+        public void Interact(InputAction.CallbackContext context)
+        {
+            if (context.performed) Interact();
         }
     }
 }

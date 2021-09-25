@@ -1,11 +1,7 @@
 {
-    "name": "Project.Characters",
-    "rootNamespace": "Project.Characters",
-    "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:d1308cd8674c94d70bfaffac71307d1f",
-        "GUID:801d3dbbd707d483f969312829a2cf82"
-    ],
+    "name": "Project.Utitilities",
+    "rootNamespace": "Project.Utitilities",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -5,9 +5,10 @@ namespace Project.Items
     [CreateAssetMenu(fileName = "New Tool", menuName = "Project/Items/Tool")]
     public class ToolSO : ItemSO
     {
-        public override void Use()
+        public override void Use(Resource resource)
         {
-            Debug.Log($"{name} used!", this);
+            if (!resource) return;
+            Debug.Log("Break " + resource, resource);
         }
     }
 }

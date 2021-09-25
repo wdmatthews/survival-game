@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1995746023397850507}
   - component: {fileID: 1995746023397850509}
   - component: {fileID: 1995746023397850506}
+  - component: {fileID: 8009196301880764236}
+  - component: {fileID: 3862566658476140457}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -52,10 +54,14 @@ MonoBehaviour:
   _moveSpeed: 3
   _jumpSpeed: 10
   _gravityScale: 0.1
+  _minYVelocity: -10
   _groundCheckDistance: 0.1
   _groundLayers:
     serializedVersion: 2
     m_Bits: 256
+  _resourceLayers:
+    serializedVersion: 2
+    m_Bits: 512
   _controller: {fileID: 1995746023397850507}
   _groundCheckPoint: {fileID: 1995746023621547230}
   _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
@@ -116,8 +122,24 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3cca6324-e9a9-4723-a84d-960129b5af8c
     m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c053f95f-4cf4-4203-a46c-c23276e80d52
+    m_ActionName: Gameplay/Interact[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -189,6 +211,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &8009196301880764236
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995746023397850504}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!135 &3862566658476140457
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995746023397850504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &1995746023621547231
 GameObject:
   m_ObjectHideFlags: 0

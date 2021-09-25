@@ -1,5 +1,6 @@
 using UnityEngine;
 using Project.Items;
+using Project.Utitilities;
 
 namespace Project.Characters
 {
@@ -8,27 +9,26 @@ namespace Project.Characters
         [SerializeField] protected float _moveSpeed = 1;
         [SerializeField] protected float _jumpSpeed = 1;
         [SerializeField] protected float _gravityScale = 1;
+        [SerializeField] protected float _minYVelocity = -1;
         [SerializeField] protected float _groundCheckDistance = 0.1f;
         [SerializeField] protected LayerMask _groundLayers = 0;
+        [SerializeField] protected LayerMask _resourceLayers = 0;
         [SerializeField] protected CharacterController _controller = null;
         [SerializeField] protected Transform _groundCheckPoint = null;
         [SerializeField] protected InventorySO _inventory = null;
-        [SerializeField] protected string _itemLayerName = "Item";
 
         protected Vector3 _velocity = new Vector3();
         protected Vector2 _moveDirection = new Vector2();
         protected bool _shouldJump = false;
-        protected int _itemLayer = 0;
-
-        protected void Awake()
-        {
-            _itemLayer = LayerMask.NameToLayer(_itemLayerName);
-        }
+        protected Resource _nearbyResource = null;
+        [SerializeField] protected ItemSO _itemInHand = null;
 
         protected void FixedUpdate()
         {
             bool isGrounded = Physics.Raycast(_groundCheckPoint.position, -transform.up,
                 _groundCheckDistance, _groundLayers);
+
+            _velocity.y = Mathf.Clamp(_velocity.y, _minYVelocity, _velocity.y);
 
             _controller.Move(Time.fixedDeltaTime * _velocity);
 
@@ -38,13 +38,20 @@ namespace Project.Characters
             if (_shouldJump && isGrounded) _velocity.y = _jumpSpeed;
         }
 
-        protected void OnControllerColliderHit(ControllerColliderHit hit)
+        protected void OnTriggerEnter(Collider other)
         {
-            if (hit.gameObject.layer == _itemLayer)
+            if (_resourceLayers.Contains(other.gameObject.layer))
             {
-                Item item = hit.gameObject.GetComponent<Item>();
-                _inventory.AddItem(item.Data, item.Amount);
-                Destroy(item.gameObject);
+                _nearbyResource = other.GetComponent<Resource>();
+            }
+        }
+
+        protected void OnTriggerExit(Collider other)
+        {
+            if (_resourceLayers.Contains(other.gameObject.layer)
+                && _nearbyResource && other.gameObject == _nearbyResource.gameObject)
+            {
+                _nearbyResource = null;
             }
         }
 
@@ -62,6 +69,13 @@ namespace Project.Characters
                 float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
                 transform.eulerAngles = new Vector3(0, -45 - angle, 0);
             }
+        }
+
+        protected void Interact()
+        {
+            if (!_itemInHand) return;
+            _itemInHand.Use();
+            _itemInHand.Use(_nearbyResource);
         }
     }
 }
