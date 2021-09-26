@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
-  m_Name: Axe
+  m_Script: {fileID: 11500000, guid: 7fb7b6002f70840619f4ef6dc0f16e14, type: 3}
+  m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  SomeDataSpecificToTool: 2

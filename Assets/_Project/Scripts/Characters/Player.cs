@@ -18,6 +18,7 @@ namespace Project.Characters
         public void Interact(InputAction.CallbackContext context)
         {
             if (context.performed) Interact();
+            else if (context.canceled) _shouldInteract = false;
         }
     }
 }

@@ -1,11 +1,8 @@
 {
-    "name": "Project.Characters",
-    "rootNamespace": "Project.Characters",
+    "name": "Project.Crafting",
+    "rootNamespace": "Project.Crafting",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:e13e5d1dda56340a09073d89a3c9bbb3",
-        "GUID:d1308cd8674c94d70bfaffac71307d1f",
-        "GUID:801d3dbbd707d483f969312829a2cf82"
+        "GUID:d1308cd8674c94d70bfaffac71307d1f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

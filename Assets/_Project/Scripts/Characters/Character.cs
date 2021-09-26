@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.Crafting;
 using Project.Items;
 using Project.Utitilities;
 
@@ -6,6 +7,7 @@ namespace Project.Characters
 {
     public class Character : MonoBehaviour
     {
+        [Header("Physics Settings")]
         [SerializeField] protected float _moveSpeed = 1;
         [SerializeField] protected float _jumpSpeed = 1;
         [SerializeField] protected float _gravityScale = 1;
@@ -13,15 +15,31 @@ namespace Project.Characters
         [SerializeField] protected float _groundCheckDistance = 0.1f;
         [SerializeField] protected LayerMask _groundLayers = 0;
         [SerializeField] protected LayerMask _resourceLayers = 0;
+
+        [Space]
+        [Header("Object References")]
         [SerializeField] protected CharacterController _controller = null;
         [SerializeField] protected Transform _groundCheckPoint = null;
         [SerializeField] protected InventorySO _inventory = null;
+        [SerializeField] protected CraftingStationSO _craftingStation = null;
 
         protected Vector3 _velocity = new Vector3();
         protected Vector2 _moveDirection = new Vector2();
         protected bool _shouldJump = false;
         protected Resource _nearbyResource = null;
         [SerializeField] protected ItemSO _itemInHand = null;
+        protected float _itemUseCooldownTimer = 0;
+        protected bool _shouldInteract = false;
+
+        protected void Update()
+        {
+            if (_shouldInteract && _itemInHand && _itemInHand.CooldownDuration > Mathf.Epsilon)
+            {
+                if (Mathf.Approximately(_itemUseCooldownTimer, 0)) Interact();
+                else _itemUseCooldownTimer = Mathf.Clamp(_itemUseCooldownTimer - Time.deltaTime,
+                    0, _itemInHand.CooldownDuration);
+            }
+        }
 
         protected void FixedUpdate()
         {
@@ -73,9 +91,11 @@ namespace Project.Characters
 
         protected void Interact()
         {
+            _shouldInteract = true;
             if (!_itemInHand) return;
+            _itemUseCooldownTimer = _itemInHand.CooldownDuration;
             _itemInHand.Use();
-            _itemInHand.Use(_nearbyResource);
+            _itemInHand.Use(_nearbyResource, _inventory);
         }
     }
 }

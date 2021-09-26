@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426c8af850e1940a69bba988a2fff32a, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
+  m_Name: Wood Axe
   m_EditorClassIdentifier: 
-  Resources: []
-  Stacks: []
-  HotbarStacks: []
+  Type: {fileID: 11400000, guid: 41d1260bd3e1647f1bf2c9ae3c130e3c, type: 2}
+  Damage: 2
+  Level: 1

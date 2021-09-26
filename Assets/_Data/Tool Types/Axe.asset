@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426c8af850e1940a69bba988a2fff32a, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 7fb7b6002f70840619f4ef6dc0f16e14, type: 3}
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  Resources: []
-  Stacks: []
-  HotbarStacks: []

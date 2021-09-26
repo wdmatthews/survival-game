@@ -6,52 +6,79 @@ namespace Project.Items
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Project/Items/Inventory")]
     public class InventorySO : ScriptableObject
     {
-        public List<ItemStack> Stacks = new List<ItemStack>();
-        public List<ItemStack> HotbarStacks = new List<ItemStack>();
-        public Dictionary<ItemSO, ItemStack> StacksByItemData = new Dictionary<ItemSO, ItemStack>();
-        public Dictionary<ItemSO, ItemStack> HotbarStacksByItemData = new Dictionary<ItemSO, ItemStack>();
+        public List<ResourceStack> Resources = new List<ResourceStack>();
+        public List<ItemStack> Items = new List<ItemStack>();
+        public List<ItemStack> HotbarItems = new List<ItemStack>();
+        public Dictionary<ResourceTypeSO, ResourceStack> ResourcesByResourceData = new Dictionary<ResourceTypeSO, ResourceStack>();
+        public Dictionary<ItemSO, ItemStack> ItemsByItemData = new Dictionary<ItemSO, ItemStack>();
+        public Dictionary<ItemSO, ItemStack> HotbarItemsByItemData = new Dictionary<ItemSO, ItemStack>();
+
+        public void AddResource(ResourceTypeSO resource, int amount)
+        {
+            if (ResourcesByResourceData.ContainsKey(resource))
+            {
+                ResourcesByResourceData[resource].Amount += amount;
+            }
+            else
+            {
+                ResourceStack newStack = new ResourceStack(resource, amount);
+                Resources.Add(newStack);
+                ResourcesByResourceData.Add(resource, newStack);
+            }
+        }
+
+        public void RemoveResource(ResourceTypeSO resource, int amount)
+        {
+            if (!ResourcesByResourceData.ContainsKey(resource)) return;
+            ResourceStack stack = ResourcesByResourceData[resource];
+            stack.Amount -= amount;
+
+            if (stack.Amount <= 0)
+            {
+                Resources.Remove(stack);
+                ResourcesByResourceData.Remove(resource);
+            }
+        }
 
         public void AddItem(ItemSO item, int amount)
         {
-            if (StacksByItemData.ContainsKey(item))
+            if (ItemsByItemData.ContainsKey(item))
             {
-                StacksByItemData[item].Amount += amount;
+                ItemsByItemData[item].Amount += amount;
             }
             else
             {
                 ItemStack newStack = new ItemStack(item, amount);
-                Stacks.Add(newStack);
-                StacksByItemData.Add(item, newStack);
+                Items.Add(newStack);
+                ItemsByItemData.Add(item, newStack);
             }
         }
 
         public void RemoveItem(ItemSO item, int amount)
         {
-            if (StacksByItemData.ContainsKey(item))
-            {
-                ItemStack stack = StacksByItemData[item];
-                stack.Amount -= amount;
+            if (!ItemsByItemData.ContainsKey(item)) return;
+            ItemStack stack = ItemsByItemData[item];
+            stack.Amount -= amount;
 
-                if (stack.Amount <= 0)
-                {
-                    Stacks.Remove(stack);
-                    StacksByItemData.Remove(item);
-                }
+            if (stack.Amount <= 0)
+            {
+                Items.Remove(stack);
+                ItemsByItemData.Remove(item);
             }
         }
 
         public void AddHotbarItem(ItemSO item)
         {
-            ItemStack stack = StacksByItemData[item];
-            HotbarStacks.Add(stack);
-            HotbarStacksByItemData.Add(item, stack);
+            ItemStack stack = ItemsByItemData[item];
+            HotbarItems.Add(stack);
+            HotbarItemsByItemData.Add(item, stack);
         }
 
         public void RemoveHotbarItem(ItemSO item)
         {
-            ItemStack stack = HotbarStacksByItemData[item];
-            HotbarStacks.Remove(stack);
-            HotbarStacksByItemData.Remove(item);
+            ItemStack stack = HotbarItemsByItemData[item];
+            HotbarItems.Remove(stack);
+            HotbarItemsByItemData.Remove(item);
         }
     }
 }

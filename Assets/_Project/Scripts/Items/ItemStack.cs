@@ -6,6 +6,8 @@ namespace Project.Items
         public ItemSO Item = null;
         public int Amount = 0;
 
+        public ItemStack() { }
+
         public ItemStack(ItemSO item, int amount)
         {
             Item = item;

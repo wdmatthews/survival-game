@@ -7,5 +7,8 @@ namespace Project.Items
     {
         public ResourceTypeSO Type = null;
         public float MaxHealth = 1;
+        public int Amount = 1;
+        public ToolTypeSO RequiredToolType = null;
+        public int MinimumToolLevel = 1;
     }
 }
