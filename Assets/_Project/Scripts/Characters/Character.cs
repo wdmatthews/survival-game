@@ -27,6 +27,8 @@ namespace Project.Characters
         protected Vector2 _moveDirection = new Vector2();
         protected bool _shouldJump = false;
         protected Resource _nearbyResource = null;
+        [Space]
+        [Header("TEMPORARY: REMOVE SERIALIZATION")]
         [SerializeField] protected ItemSO _itemInHand = null;
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldInteract = false;

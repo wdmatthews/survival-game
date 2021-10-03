@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Stone Axe
   m_EditorClassIdentifier: 
   CooldownDuration: 0.5
+  Level: 2
+  ItemAtNextLevel: {fileID: 0}
+  IngredientsNeededToUpgrade: []
   Type: {fileID: 11400000, guid: 41d1260bd3e1647f1bf2c9ae3c130e3c, type: 2}
   Damage: 3
-  Level: 2

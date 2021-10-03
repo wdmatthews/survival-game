@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426c8af850e1940a69bba988a2fff32a, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: 9b4e9457bb6484627a6c87adb042cb93, type: 3}
+  m_Name: Stone
   m_EditorClassIdentifier: 
-  Resources: []
-  Items: []
-  HotbarItems: []

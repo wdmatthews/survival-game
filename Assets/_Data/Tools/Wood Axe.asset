@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
   m_Name: Wood Axe
   m_EditorClassIdentifier: 
+  CooldownDuration: 1
+  Level: 1
+  ItemAtNextLevel: {fileID: 11400000, guid: 114b4e22abfd94848a4c7e70f767925e, type: 2}
+  IngredientsNeededToUpgrade:
+  - Ingredient: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
+    Amount: 2
   Type: {fileID: 11400000, guid: 41d1260bd3e1647f1bf2c9ae3c130e3c, type: 2}
   Damage: 2
-  Level: 1

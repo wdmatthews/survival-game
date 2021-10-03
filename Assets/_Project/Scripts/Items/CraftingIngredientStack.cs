@@ -1,6 +1,4 @@
-using Project.Items;
-
-namespace Project.Crafting
+namespace Project.Items
 {
     [System.Serializable]
     public class CraftingIngredientStack

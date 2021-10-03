@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9be5b3e2360d045ada94fc499d535d15, type: 3}
-  m_Name: Tree
+  m_Name: Rock
   m_EditorClassIdentifier: 
-  Type: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
+  Type: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
   MaxHealth: 10
   Amount: 1
-  RequiredToolType: {fileID: 11400000, guid: 41d1260bd3e1647f1bf2c9ae3c130e3c, type: 2}
+  RequiredToolType: {fileID: 11400000, guid: 71d60ee73c98541de8f685011b3d53bc, type: 2}
   MinimumToolLevel: 1
