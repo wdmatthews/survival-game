@@ -1,9 +1,7 @@
 {
-    "name": "Project.Growing",
-    "rootNamespace": "Project.Growing",
+    "name": "Project.Combat",
+    "rootNamespace": "Project.Combat",
     "references": [
-        "GUID:dd7dc48cf5a764e3aa75ed87b67fd85b",
-        "GUID:1387ff8fddcc84f3aa9a35eb70edd06b",
         "GUID:d1308cd8674c94d70bfaffac71307d1f"
     ],
     "includePlatforms": [],

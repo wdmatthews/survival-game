@@ -1,21 +1,13 @@
 using UnityEngine;
+using Project.Combat;
 using Project.Crafting;
 using Project.Items;
 using Project.Utitilities;
 
 namespace Project.Characters
 {
-    public class Character : MonoBehaviour
+    public class Character : Damageable
     {
-        [Header("Physics Settings")]
-        [SerializeField] protected float _moveSpeed = 1;
-        [SerializeField] protected float _jumpSpeed = 1;
-        [SerializeField] protected float _gravityScale = 1;
-        [SerializeField] protected float _minYVelocity = -1;
-        [SerializeField] protected float _groundCheckDistance = 0.1f;
-        [SerializeField] protected LayerMask _groundLayers = 0;
-        [SerializeField] protected LayerMask _resourceLayers = 0;
-
         [Space]
         [Header("Object References")]
         [SerializeField] protected CharacterController _controller = null;
@@ -23,6 +15,7 @@ namespace Project.Characters
         [SerializeField] protected InventorySO _inventory = null;
         [SerializeField] protected CraftingStationSO _craftingStation = null;
 
+        protected CharacterSO _characterData = null;
         protected Vector3 _velocity = new Vector3();
         protected Vector2 _moveDirection = new Vector2();
         protected bool _shouldJump = false;
@@ -33,8 +26,16 @@ namespace Project.Characters
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldInteract = false;
 
-        protected void Update()
+        protected override void Awake()
         {
+            base.Awake();
+            _characterData = (CharacterSO)_data;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
             if (_shouldInteract && _itemInHand && _itemInHand.CooldownDuration > Mathf.Epsilon)
             {
                 if (Mathf.Approximately(_itemUseCooldownTimer, 0)) Interact();
@@ -46,21 +47,21 @@ namespace Project.Characters
         protected void FixedUpdate()
         {
             bool isGrounded = Physics.Raycast(_groundCheckPoint.position, -transform.up,
-                _groundCheckDistance, _groundLayers);
+                _characterData.GroundCheckDistance, _characterData.GroundLayers);
 
-            _velocity.y = Mathf.Clamp(_velocity.y, _minYVelocity, _velocity.y);
+            _velocity.y = Mathf.Clamp(_velocity.y, _characterData.MinYVelocity, _velocity.y);
 
             _controller.Move(Time.fixedDeltaTime * _velocity);
 
             if (isGrounded) _velocity.y = 0;
-            else _velocity.y += _gravityScale * Physics.gravity.y;
+            else _velocity.y += _characterData.GravityScale * Physics.gravity.y;
 
-            if (_shouldJump && isGrounded) _velocity.y = _jumpSpeed;
+            if (_shouldJump && isGrounded) _velocity.y = _characterData.JumpSpeed;
         }
 
         protected void OnTriggerEnter(Collider other)
         {
-            if (_resourceLayers.Contains(other.gameObject.layer))
+            if (_characterData.ResourceLayers.Contains(other.gameObject.layer))
             {
                 _nearbyResource = other.GetComponent<Resource>();
             }
@@ -68,7 +69,7 @@ namespace Project.Characters
 
         protected void OnTriggerExit(Collider other)
         {
-            if (_resourceLayers.Contains(other.gameObject.layer)
+            if (_characterData.ResourceLayers.Contains(other.gameObject.layer)
                 && _nearbyResource && other.gameObject == _nearbyResource.gameObject)
             {
                 _nearbyResource = null;
@@ -79,9 +80,9 @@ namespace Project.Characters
         {
             Vector3 isoDirection = MovementDirection.CartesianToIso(direction);
             _velocity = new Vector3(
-                _moveSpeed * isoDirection.x,
+                _characterData.MoveSpeed * isoDirection.x,
                 _velocity.y,
-                _moveSpeed * isoDirection.z
+                _characterData.MoveSpeed * isoDirection.z
             );
 
             if (!Mathf.Approximately(direction.x, 0) || !Mathf.Approximately(direction.y, 0))
@@ -97,6 +98,7 @@ namespace Project.Characters
             if (!_itemInHand) return;
             _itemUseCooldownTimer = _itemInHand.CooldownDuration;
             _itemInHand.Use();
+            _itemInHand.Use(this);
             _itemInHand.Use(_nearbyResource, _inventory);
         }
     }
