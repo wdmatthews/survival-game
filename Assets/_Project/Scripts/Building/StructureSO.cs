@@ -9,11 +9,12 @@ namespace Project.Building
         public Structure Prefab = null;
         public CraftingIngredientStack[] Ingredients = { };
 
-        public void Build(Vector3 position, int angleIndex, InventorySO inventory)
+        public Structure Build(Vector3 position, int angleIndex, InventorySO inventory)
         {
             Ingredients.RemoveFrom(inventory);
             Structure structure = Instantiate(Prefab);
             structure.Place(position, angleIndex);
+            return structure;
         }
     }
 }

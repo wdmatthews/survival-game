@@ -6,8 +6,8 @@ namespace Project.Combat
     {
         [Header("Health Settings")]
         public float MaxHealth = 1;
-        public float TimeBeforeHealthRegeneration = 1;
-        public float HealthRegenerationAmount = 1;
-        public float HealthRegenerationCooldown = 1;
+        public float TimeBeforeHealthRegeneration = 0;
+        public float HealthRegenerationAmount = 0;
+        public float HealthRegenerationCooldown = 0;
     }
 }

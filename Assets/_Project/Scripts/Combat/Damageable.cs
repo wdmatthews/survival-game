@@ -18,7 +18,8 @@ namespace Project.Combat
 
         protected virtual void Update()
         {
-            if (Mathf.Approximately(_health, _data.MaxHealth)) return;
+            if (Mathf.Approximately(_health, _data.MaxHealth)
+                || Mathf.Approximately(_data.TimeBeforeHealthRegeneration, 0)) return;
 
             if (Mathf.Approximately(_timeLeftUntilHealthRegeneration, 0))
             {

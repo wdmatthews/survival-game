@@ -13,8 +13,10 @@ namespace Project.Items
         protected float _health = 0;
         protected bool _isBroken = false;
 
-        protected void Awake()
+        public void Place(Vector3 position, int angleIndex)
         {
+            transform.position = position;
+            transform.localEulerAngles = new Vector3(0, angleIndex * 90, 0);
             _health = _data.MaxHealth;
         }
 
