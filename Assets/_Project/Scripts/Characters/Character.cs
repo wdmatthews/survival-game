@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Project.Combat;
 using Project.Crafting;
 using Project.Items;
-using Project.Utitilities;
+using Project.Utilities;
 
 namespace Project.Characters
 {
@@ -20,11 +21,12 @@ namespace Project.Characters
         protected Vector2 _moveDirection = new Vector2();
         protected bool _shouldJump = false;
         protected Resource _nearbyResource = null;
+        protected List<MonoBehaviour> _nearbyMonsters = new List<MonoBehaviour>();
         [Space]
         [Header("TEMPORARY: REMOVE SERIALIZATION")]
         [SerializeField] protected ItemSO _itemInHand = null;
         protected float _itemUseCooldownTimer = 0;
-        protected bool _shouldInteract = false;
+        protected bool _shouldUse = false;
 
         protected override void Awake()
         {
@@ -36,7 +38,7 @@ namespace Project.Characters
         {
             base.Update();
 
-            if (_shouldInteract && _itemInHand && _itemInHand.CooldownDuration > Mathf.Epsilon)
+            if (_shouldUse && _itemInHand && _itemInHand.CooldownDuration > Mathf.Epsilon)
             {
                 if (Mathf.Approximately(_itemUseCooldownTimer, 0)) Interact();
                 else _itemUseCooldownTimer = Mathf.Clamp(_itemUseCooldownTimer - Time.deltaTime,
@@ -61,18 +63,32 @@ namespace Project.Characters
 
         protected void OnTriggerEnter(Collider other)
         {
-            if (_characterData.ResourceLayers.Contains(other.gameObject.layer))
+            int colliderLayer = other.gameObject.layer;
+
+            if (_characterData.ResourceLayers.Contains(colliderLayer))
             {
                 _nearbyResource = other.GetComponent<Resource>();
+            }
+            else if (_characterData.MonsterLayers.Contains(colliderLayer)
+                && !(other is SphereCollider))
+            {
+                Monster monster = other.GetComponent<Monster>();
+                if (!_nearbyMonsters.Contains(monster)) _nearbyMonsters.Add(monster);
             }
         }
 
         protected void OnTriggerExit(Collider other)
         {
-            if (_characterData.ResourceLayers.Contains(other.gameObject.layer)
+            int colliderLayer = other.gameObject.layer;
+
+            if (_characterData.ResourceLayers.Contains(colliderLayer)
                 && _nearbyResource && other.gameObject == _nearbyResource.gameObject)
             {
                 _nearbyResource = null;
+            }
+            else if (_characterData.MonsterLayers.Contains(colliderLayer))
+            {
+                _nearbyMonsters.Remove(other.GetComponent<Monster>());
             }
         }
 
@@ -92,14 +108,20 @@ namespace Project.Characters
             }
         }
 
-        protected void Interact()
+        protected void Use()
         {
-            _shouldInteract = true;
+            _shouldUse = true;
             if (!_itemInHand) return;
             _itemUseCooldownTimer = _itemInHand.CooldownDuration;
             _itemInHand.Use();
             _itemInHand.Use(this);
             _itemInHand.Use(_nearbyResource, _inventory);
+            _itemInHand.Use(_nearbyMonsters);
+        }
+
+        protected void Interact()
+        {
+
         }
     }
 }

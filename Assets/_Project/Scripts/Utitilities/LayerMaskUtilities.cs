@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Project.Utitilities
+namespace Project.Utilities
 {
     public static class LayerMaskUtilities
     {

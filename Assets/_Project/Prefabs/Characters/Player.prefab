@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1995746023397850506}
   - component: {fileID: 8009196301880764236}
   - component: {fileID: 3862566658476140457}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,22 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: b931b06ddfe7e4bab916256caea25237, type: 2}
-  _moveSpeed: 3
-  _jumpSpeed: 10
-  _gravityScale: 0.1
-  _minYVelocity: -10
-  _groundCheckDistance: 0.1
-  _groundLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  _resourceLayers:
-    serializedVersion: 2
-    m_Bits: 512
   _controller: {fileID: 1995746023397850507}
   _groundCheckPoint: {fileID: 1995746023621547230}
   _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
   _craftingStation: {fileID: 11400000, guid: 13b6ad206dc374222a7646b0a02d5210, type: 2}
   _itemInHand: {fileID: 0}
+  _referenceToSelf: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +131,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c053f95f-4cf4-4203-a46c-c23276e80d52
     m_ActionName: Gameplay/Interact[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: Use
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 043f0edc-2179-46b6-8ef2-80771857d573
+    m_ActionName: Gameplay/Use[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Gameplay
@@ -252,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1995746023621547230}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +290,7 @@ GameObject:
   - component: {fileID: 3942325888654576607}
   - component: {fileID: 3813000094346338842}
   - component: {fileID: 2414932692539161697}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Directional Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

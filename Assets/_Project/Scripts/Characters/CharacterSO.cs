@@ -15,5 +15,6 @@ namespace Project.Characters
         public float GroundCheckDistance = 0.1f;
         public LayerMask GroundLayers = 0;
         public LayerMask ResourceLayers = 0;
+        public LayerMask MonsterLayers = 0;
     }
 }

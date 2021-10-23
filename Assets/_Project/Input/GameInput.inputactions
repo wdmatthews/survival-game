@@ -22,6 +22,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Use",
+                    "type": "Button",
+                    "id": "043f0edc-2179-46b6-8ef2-80771857d573",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "c053f95f-4cf4-4203-a46c-c23276e80d52",
@@ -105,6 +113,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4e66b68-f51f-43d1-b0ab-dcc10a1b47df",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
