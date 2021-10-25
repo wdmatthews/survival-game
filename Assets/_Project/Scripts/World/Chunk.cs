@@ -14,6 +14,10 @@ namespace Project.World
         [SerializeField] private float _maxSpawnDistanceFromPlayer = 1;
         [SerializeField] private ResourcePercentage[] _resourcePercentages = { };
 
+        [Space]
+        [Header("TEMPORARY: REMOVE")]
+        [SerializeField] private MonsterManagerSO _monsterManager = null;
+
         private ResourceNode[] _resourceNodes = { };
         private StructureNode[] _structureNodes = { };
         private MonsterNode[] _monsterNodes = { };
@@ -45,6 +49,9 @@ namespace Project.World
             _resourceNodeCount = _resourceNodes.Length;
             _structureNodeCount = _structureNodes.Length;
             _monsterNodeCount = _monsterNodes.Length;
+
+            // TODO REMOVE
+            _monsterManager.CurrentChunk = this;
         }
 
         public void RegenerateResources()
