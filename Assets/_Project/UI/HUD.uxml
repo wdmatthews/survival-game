@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="HeartBar" style="position: absolute; bottom: 64px; width: 100%; height: 64px; flex-direction: row; padding-left: 4px; align-items: center; justify-content: center;">
+        <ui:VisualElement name="Heart" style="width: 48px; height: 48px; margin-top: auto; margin-bottom: auto; margin-left: 4px; margin-right: 4px; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/_Project/UI/Circle.png?fileID=21300000&amp;guid=338df08cc8b5a4956af9f0c71c516ff1&amp;type=3#Circle&apos;);" />
+        <ui:VisualElement name="Heart" style="width: 48px; height: 48px; margin-top: auto; margin-bottom: auto; margin-left: 4px; margin-right: 4px; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/_Project/UI/Circle.png?fileID=21300000&amp;guid=338df08cc8b5a4956af9f0c71c516ff1&amp;type=3#Circle&apos;);" />
+    </ui:VisualElement>
+</ui:UXML>

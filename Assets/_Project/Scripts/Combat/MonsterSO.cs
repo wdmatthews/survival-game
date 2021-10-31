@@ -17,10 +17,10 @@ namespace Project.Combat
         public Monster Prefab = null;
         public DamageableReferenceSO ReferenceToPlayer = null;
 
-        public Monster Spawn(Vector3 position, int angleIndex)
+        public Monster Spawn(Vector3 position, int angleIndex, System.Action<Monster> die)
         {
             Monster monster = Instantiate(Prefab);
-            monster.Spawn(position, angleIndex);
+            monster.Spawn(position, angleIndex, die);
             return monster;
         }
     }

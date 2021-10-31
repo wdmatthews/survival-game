@@ -16,6 +16,7 @@ namespace Project.Combat
         protected List<MonoBehaviour> _nearbyCharacters = new List<MonoBehaviour>();
         protected bool _attackIsCoolingDown = false;
         protected float _attackCooldownTimer = 0;
+        protected System.Action<Monster> _onDie = null;
 
         protected override void Awake()
         {
@@ -77,11 +78,12 @@ namespace Project.Combat
             }
         }
 
-        public void Spawn(Vector3 position, int angleIndex)
+        public void Spawn(Vector3 position, int angleIndex, System.Action<Monster> onDie)
         {
             transform.position = position;
             transform.localEulerAngles = new Vector3(0, angleIndex * 90, 0);
             _health = _data.MaxHealth;
+            _onDie = onDie;
         }
 
         public void StartAttack()
@@ -104,6 +106,13 @@ namespace Project.Combat
         {
             _attackIsCoolingDown = true;
             _attackCooldownTimer = _monsterData.AttackCooldown;
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            _onDie?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

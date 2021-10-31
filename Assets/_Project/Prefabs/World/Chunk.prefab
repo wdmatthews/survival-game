@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1893717539238793149}
   - component: {fileID: 8195839943731073998}
-  m_Layer: 0
+  - component: {fileID: 4137404825167623202}
+  m_Layer: 12
   m_Name: Chunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,5 +48,22 @@ MonoBehaviour:
   _region: {fileID: 0}
   _minSpawnDistanceFromPlayer: 1
   _maxSpawnDistanceFromPlayer: 5
+  _characterLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   _resourcePercentages: []
-  _testMonsterData: {fileID: 0}
+  _monsterManager: {fileID: 11400000, guid: f31136bef2175490dba4974bfdff01f7, type: 2}
+  _nearbyChunks: []
+--- !u!65 &4137404825167623202
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820636114590349481}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

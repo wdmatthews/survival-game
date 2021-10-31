@@ -13,10 +13,9 @@ namespace Project.World
         public TimeManagerSO TimeManager = null;
         public DamageableReferenceSO PlayerReference = null;
 
-        [Header("TEMPORARY: REMOVE SERIALIZATION")]
-        /* [System.NonSerialized] */ public RegionSO Region = null;
-        /* [System.NonSerialized] */ public Chunk CurrentChunk = null;
-        /* [System.NonSerialized] */ public List<Chunk> NearbyChunks = new List<Chunk>();
+        [System.NonSerialized] public RegionSO Region = null;
+        [System.NonSerialized] public Chunk CurrentChunk = null;
+        [System.NonSerialized] public List<Chunk> NearbyChunks = new List<Chunk>();
         [System.NonSerialized] private float _spawnTimer = 0;
         [System.NonSerialized] private List<Monster> _aliveMonsters = new List<Monster>();
 
@@ -51,17 +50,22 @@ namespace Project.World
         {
             MonsterSO monsterData = Monsters[Random.Range(0, Monsters.Length)];
             Vector3 playerPosition = PlayerReference.Value.transform.position;
-            Monster monsterSpawned = CurrentChunk.SpawnMonster(monsterData, playerPosition);
+            Monster monsterSpawned = CurrentChunk.SpawnMonster(monsterData, playerPosition, DespawnMonster);
             int nearbyChunkIndex = 0;
             int nearbyChunkCount = NearbyChunks.Count;
 
             while (!monsterSpawned && nearbyChunkIndex < nearbyChunkCount)
             {
-                monsterSpawned = NearbyChunks[nearbyChunkIndex].SpawnMonster(monsterData, playerPosition);
+                monsterSpawned = NearbyChunks[nearbyChunkIndex].SpawnMonster(monsterData, playerPosition, DespawnMonster);
                 nearbyChunkIndex++;
             }
 
             if (monsterSpawned) _aliveMonsters.Add(monsterSpawned);
+        }
+
+        public void DespawnMonster(Monster monster)
+        {
+            _aliveMonsters.Remove(monster);
         }
     }
 }

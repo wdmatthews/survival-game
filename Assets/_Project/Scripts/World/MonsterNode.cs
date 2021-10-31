@@ -9,9 +9,9 @@ namespace Project.World
     {
         private Monster _spawnedMonster = null;
 
-        public Monster Spawn(MonsterSO monster, int angleIndex)
+        public Monster Spawn(MonsterSO monster, int angleIndex, System.Action<Monster> onDie)
         {
-            _spawnedMonster = monster.Spawn(transform.position, angleIndex);
+            _spawnedMonster = monster.Spawn(transform.position, angleIndex, onDie);
             return _spawnedMonster;
         }
     }

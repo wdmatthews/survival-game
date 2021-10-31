@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Project.Combat;
 using Project.Items;
+using Project.Utilities;
 
 namespace Project.World
 {
@@ -12,11 +13,10 @@ namespace Project.World
         [SerializeField] private RegionSO _region = null;
         [SerializeField] private float _minSpawnDistanceFromPlayer = 1;
         [SerializeField] private float _maxSpawnDistanceFromPlayer = 1;
+        [SerializeField] private LayerMask _characterLayers = 0;
         [SerializeField] private ResourcePercentage[] _resourcePercentages = { };
-
-        [Space]
-        [Header("TEMPORARY: REMOVE")]
         [SerializeField] private MonsterManagerSO _monsterManager = null;
+        [SerializeField] private List<Chunk> _nearbyChunks = new List<Chunk>();
 
         private ResourceNode[] _resourceNodes = { };
         private StructureNode[] _structureNodes = { };
@@ -49,9 +49,40 @@ namespace Project.World
             _resourceNodeCount = _resourceNodes.Length;
             _structureNodeCount = _structureNodes.Length;
             _monsterNodeCount = _monsterNodes.Length;
+        }
 
-            // TODO REMOVE
-            _monsterManager.CurrentChunk = this;
+        private void OnTriggerEnter(Collider other)
+        {
+            SetAsCurrentChunk(other);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (!_monsterManager.CurrentChunk) SetAsCurrentChunk(other);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            int colliderLayer = other.gameObject.layer;
+
+            if (_characterLayers.Contains(colliderLayer)
+                && !(other is SphereCollider))
+            {
+                _monsterManager.CurrentChunk = null;
+            }
+        }
+
+        private void SetAsCurrentChunk(Collider other)
+        {
+            int colliderLayer = other.gameObject.layer;
+
+            if (_characterLayers.Contains(colliderLayer)
+                && !(other is SphereCollider))
+            {
+                _monsterManager.Region = _region;
+                _monsterManager.CurrentChunk = this;
+                _monsterManager.NearbyChunks = _nearbyChunks;
+            }
         }
 
         public void RegenerateResources()
@@ -113,7 +144,7 @@ namespace Project.World
             }
         }
 
-        public Monster SpawnMonster(MonsterSO monsterData, Vector3 playerPosition)
+        public Monster SpawnMonster(MonsterSO monsterData, Vector3 playerPosition, System.Action<Monster> onDie)
         {
             MonsterNode monsterNode = null;
             float distanceFromPlayer = 0;
@@ -131,7 +162,7 @@ namespace Project.World
 
             if (!monsterNode || distanceFromPlayer < _minSpawnDistanceFromPlayer
                 || distanceFromPlayer > _maxSpawnDistanceFromPlayer) return null;
-            return monsterNode.Spawn(monsterData, Random.Range(0, 4));
+            return monsterNode.Spawn(monsterData, Random.Range(0, 4), onDie);
         }
     }
 }
