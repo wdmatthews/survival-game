@@ -34,6 +34,9 @@ namespace Project.Combat
         {
             base.Update();
 
+            transform.LookAt(_moveTarget);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
             float distanceToTarget = Vector3.Distance(transform.position, _moveTarget.position);
 
             if (distanceToTarget > _monsterData.StopDistanceFromTarget)

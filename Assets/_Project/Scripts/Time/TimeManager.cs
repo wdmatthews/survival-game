@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.UI;
 
 namespace Project.Time
 {
@@ -7,9 +8,11 @@ namespace Project.Time
     public class TimeManager : MonoBehaviour
     {
         [SerializeField] private TimeManagerSO _timeManager = null;
+        [SerializeField] private TimeHUD _timeHUD = null;
 
         private void Awake()
         {
+            _timeManager.TimeHUD = _timeHUD;
             _timeManager.StartFirstDay();
         }
 

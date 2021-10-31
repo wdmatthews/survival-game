@@ -22,9 +22,7 @@ namespace Project.Characters
         protected bool _shouldJump = false;
         protected Resource _nearbyResource = null;
         protected List<MonoBehaviour> _nearbyMonsters = new List<MonoBehaviour>();
-        [Space]
-        [Header("TEMPORARY: REMOVE SERIALIZATION")]
-        [SerializeField] protected ItemSO _itemInHand = null;
+        protected ItemSO _itemInHand = null;
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
 

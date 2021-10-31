@@ -123,6 +123,82 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 2183a4aa2a1f44c3aab97ffcda1a4f43, type: 2}
+--- !u!1 &158754776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158754779}
+  - component: {fileID: 158754778}
+  - component: {fileID: 158754777}
+  m_Layer: 0
+  m_Name: Event System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158754777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158754776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+--- !u!114 &158754778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158754776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &158754779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158754776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272688965 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5383634663688918671, guid: 017e4347aef4c43f59d474f2cec8d320, type: 3}
@@ -623,6 +699,8 @@ GameObject:
   m_Component:
   - component: {fileID: 717157358}
   - component: {fileID: 717157357}
+  - component: {fileID: 717157359}
+  - component: {fileID: 717157360}
   m_Layer: 5
   m_Name: Game HUD
   m_TagString: Untagged
@@ -644,7 +722,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 19bc16ae40f174bd0ac424830bdaedf6, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 6ca64cf6e45154a6881f0014e68e76a2, type: 3}
   m_SortingOrder: 0
 --- !u!4 &717157358
 Transform:
@@ -661,6 +739,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717157359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717157356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2684e90015014969ab5541097356f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiDocument: {fileID: 717157357}
+  _heartTemplate: {fileID: 9197481963319205126, guid: 44fe26258b3294bdc8227dce55a3bd3f, type: 3}
+  _fullSprite: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  _halfSprite: {fileID: 21300000, guid: 028cb6b2f15a547b8862b2581cc63df4, type: 3}
+  _emptySprite: {fileID: 21300000, guid: 998d65c99e63741f59eadb7d929e9a25, type: 3}
+--- !u!114 &717157360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717157356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f24c9e9b0334831b30e31229953eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiDocument: {fileID: 717157357}
 --- !u!1001 &770039780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,7 +1401,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8561798, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1983,6 +2091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Time Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2736470989526931294, guid: d1039993db49f4d709d40fe2cf4910b4, type: 3}
+      propertyPath: _timeHUD
+      value: 
+      objectReference: {fileID: 717157360}
     - target: {fileID: 9090284974836759365, guid: d1039993db49f4d709d40fe2cf4910b4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2149,6 +2261,10 @@ PrefabInstance:
       propertyPath: _recipe
       value: 
       objectReference: {fileID: 11400000, guid: 08039d7f7e1c648e8bea8856cb06749a, type: 2}
+    - target: {fileID: 1995746023397850510, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
+      propertyPath: _heartHUD
+      value: 
+      objectReference: {fileID: 717157359}
     - target: {fileID: 1995746023397850510, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
       propertyPath: _itemInHand
       value: 
