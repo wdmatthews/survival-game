@@ -33,6 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1995746023621547230}
   - {fileID: 3942325888654576607}
@@ -56,8 +57,8 @@ MonoBehaviour:
   _groundCheckPoint: {fileID: 1995746023621547230}
   _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
   _craftingStation: {fileID: 11400000, guid: 13b6ad206dc374222a7646b0a02d5210, type: 2}
-  _itemInHand: {fileID: 0}
   _referenceToSelf: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}
+  _heartHUD: {fileID: 0}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +148,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 043f0edc-2179-46b6-8ef2-80771857d573
     m_ActionName: Gameplay/Use[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: SetHotbarIndex
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 495338ff-3367-4c4e-a1ef-81349d1dac8e
+    m_ActionName: Gameplay/SetHotbarItem[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4,/Keyboard/5,/Keyboard/6,/Keyboard/7]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: CycleToNextHotbarItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 44baf543-9d6d-4c6f-98ed-c03d88bff111
+    m_ActionName: Gameplay/NextHotbarItem[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: CycleToPreviousHotbarItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ac73eec5-49fb-4626-9fa2-a0eae5ec426a
+    m_ActionName: Gameplay/PreviousHotbarItem[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Gameplay
@@ -275,6 +324,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1995746023397850508}
   m_RootOrder: 0
@@ -307,6 +357,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.55, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1995746023397850508}
   m_RootOrder: 1

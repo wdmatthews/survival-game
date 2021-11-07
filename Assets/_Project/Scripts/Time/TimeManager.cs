@@ -10,7 +10,7 @@ namespace Project.Time
         [SerializeField] private TimeManagerSO _timeManager = null;
         [SerializeField] private TimeHUD _timeHUD = null;
 
-        private void Awake()
+        private void Start()
         {
             _timeManager.TimeHUD = _timeHUD;
             _timeManager.StartFirstDay();

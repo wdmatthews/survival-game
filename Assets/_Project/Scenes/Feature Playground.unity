@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 717157357}
   - component: {fileID: 717157359}
   - component: {fileID: 717157360}
+  - component: {fileID: 717157361}
   m_Layer: 5
   m_Name: Game HUD
   m_TagString: Untagged
@@ -769,6 +770,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 717157357}
+--- !u!114 &717157361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717157356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497cb77c8f4bd4571a89c7bb40c5d10a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiDocument: {fileID: 717157357}
+  _hotbarSlotTemplate: {fileID: 9197481963319205126, guid: a991ca20a35f549199e3db4f4a81e30f, type: 3}
 --- !u!1001 &770039780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2265,6 +2280,10 @@ PrefabInstance:
       propertyPath: _heartHUD
       value: 
       objectReference: {fileID: 717157359}
+    - target: {fileID: 1995746023397850510, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
+      propertyPath: _hotbarHUD
+      value: 
+      objectReference: {fileID: 717157361}
     - target: {fileID: 1995746023397850510, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
       propertyPath: _itemInHand
       value: 

@@ -23,6 +23,7 @@ namespace Project.Characters
         protected Resource _nearbyResource = null;
         protected List<MonoBehaviour> _nearbyMonsters = new List<MonoBehaviour>();
         protected ItemSO _itemInHand = null;
+        protected int _hotbarIndex = 0;
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
 
@@ -120,6 +121,46 @@ namespace Project.Characters
         protected void Interact()
         {
 
+        }
+
+        protected virtual void SetHotbarIndex(int index)
+        {
+            _hotbarIndex = index;
+            _itemInHand = index >= 0 ? _inventory.HotbarItems[_hotbarIndex]?.Item : null;
+        }
+
+        protected virtual void CycleToNextHotbarItem()
+        {
+            int index = _hotbarIndex + 1;
+            if (index >= _inventory.HotbarItems.Count) index = 0;
+            SetHotbarIndex(index);
+        }
+
+        protected virtual void CycleToPreviousHotbarItem()
+        {
+            int index = _hotbarIndex - 1;
+            if (index < 0) index = _inventory.HotbarItems.Count - 1;
+            SetHotbarIndex(index);
+        }
+
+        protected virtual void AddToHotbar(ItemSO item, int hotbarIndex = -1)
+        {
+            _inventory.AddHotbarItem(item, hotbarIndex);
+        }
+
+        protected virtual void RemoveFromHotbar(int hotbarIndex)
+        {
+            if (_hotbarIndex == hotbarIndex && _hotbarIndex >= 0)
+            {
+                RemoveItemFromHand();
+            }
+
+            _inventory.RemoveHotbarItem(_inventory.HotbarItems[hotbarIndex].Item, hotbarIndex);
+        }
+
+        protected virtual void RemoveItemFromHand()
+        {
+            _itemInHand = null;
         }
     }
 }

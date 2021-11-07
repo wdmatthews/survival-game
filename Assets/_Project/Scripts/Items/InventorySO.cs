@@ -68,17 +68,19 @@ namespace Project.Items
             }
         }
 
-        public void AddHotbarItem(ItemSO item)
+        public void AddHotbarItem(ItemSO item, int index = -1)
         {
             ItemStack stack = ItemsByItemData[item];
-            HotbarItems.Add(stack);
+            if (index < 0) HotbarItems.Add(stack);
+            else HotbarItems.Insert(index, stack);
             HotbarItemsByItemData.Add(item, stack);
         }
 
-        public void RemoveHotbarItem(ItemSO item)
+        public void RemoveHotbarItem(ItemSO item, int index = -1)
         {
             ItemStack stack = HotbarItemsByItemData[item];
-            HotbarItems.Remove(stack);
+            if (index < 0) HotbarItems.Remove(stack);
+            else HotbarItems[index] = null;
             HotbarItemsByItemData.Remove(item);
         }
     }
