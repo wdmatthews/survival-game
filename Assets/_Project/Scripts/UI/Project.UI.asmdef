@@ -1,7 +1,9 @@
 {
     "name": "Project.UI",
     "rootNamespace": "Project.UI",
-    "references": [],
+    "references": [
+        "GUID:d1308cd8674c94d70bfaffac71307d1f"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

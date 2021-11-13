@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
   m_Name: Wood Pickaxe
   m_EditorClassIdentifier: 
-  CooldownDuration: 0
   Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Description: A pickace with a wood blade
+  CooldownDuration: 0
   Level: 1
   ItemAtNextLevel: {fileID: 0}
   IngredientsNeededToUpgrade: []

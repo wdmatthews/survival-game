@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a05c72127bab4b94b53a5201f58b0ec, type: 3}
   m_Name: Wood Sword
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Description: A sword with a wood blade
   CooldownDuration: 1
-  Icon: {fileID: 21300000, guid: 998d65c99e63741f59eadb7d929e9a25, type: 3}
   Level: 1
   ItemAtNextLevel: {fileID: 0}
   IngredientsNeededToUpgrade: []

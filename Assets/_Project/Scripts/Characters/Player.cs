@@ -30,6 +30,12 @@ namespace Project.Characters
             }
 
             SetHotbarIndex(0);
+
+            for (int i = 0; i < 4; i++)
+            {
+                _inventory.HotbarItems.Add(null);
+                _hotbarHUD.AddSlot();
+            }
             // TESTING //
         }
 
