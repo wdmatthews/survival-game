@@ -29,7 +29,7 @@ namespace Project.UI
 
             for (int i = 0; i < count; i++)
             {
-                VisualElement heart = new List<VisualElement>(_heartTemplate.Instantiate().Children())[0];
+                VisualElement heart = _heartTemplate.Instantiate().ElementAt(0);
                 heart.style.backgroundImage = new StyleBackground(_fullSprite);
                 _heartBar.Add(heart);
                 _hearts.Add(heart);

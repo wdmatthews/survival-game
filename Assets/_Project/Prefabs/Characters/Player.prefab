@@ -59,6 +59,8 @@ MonoBehaviour:
   _craftingStation: {fileID: 11400000, guid: 13b6ad206dc374222a7646b0a02d5210, type: 2}
   _referenceToSelf: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}
   _heartHUD: {fileID: 0}
+  _hotbarHUD: {fileID: 0}
+  _inventoryWindow: {fileID: 0}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +198,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ac73eec5-49fb-4626-9fa2-a0eae5ec426a
     m_ActionName: Gameplay/PreviousHotbarItem[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1995746023397850510}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: ToggleInventoryWindow
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b986b677-15ea-4176-9eb8-6ac861eb2db9
+    m_ActionName: Gameplay/ToggleInventory[/Keyboard/v]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard and Mouse
   m_DefaultActionMap: Gameplay

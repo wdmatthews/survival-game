@@ -11,26 +11,34 @@ namespace Project.UI
         private Label _nameLabel = null;
         private VisualElement _icon = null;
         private Label _descriptionLabel = null;
+        private VisualElement _hotbarButtonsPanel = null;
         private List<Button> _hotbarAssignmentButtons = new();
         private Color _hotbarButtonSelectedBorderColor = new();
         private Color _hotbarButtonDefaultBorderColor = new();
         private float _hotbarButtonSelectedOpacity = 0;
         private int _firstHotbarButtonIndex = -1;
+        private int _currentHotbarIndex = -1;
+        private System.Action<int, int> _onAssignItemToHotbarIndex = null;
 
-        public InventoryWindowDescriptionPanel(VisualElement panel)
+        public InventoryWindowDescriptionPanel(VisualElement panel,
+            System.Action<int, int> onAssignItemToHotbarIndex)
         {
             _panel = panel;
+            _onAssignItemToHotbarIndex = onAssignItemToHotbarIndex;
             _nameLabel = _panel.Q<Label>("Name");
             _icon = _panel.Q("Icon");
             _descriptionLabel = _panel.Q<Label>("Description");
+            _hotbarButtonsPanel = _panel.Q("HotbarPanel");
             List<VisualElement> buttons = new(_panel.Q("HotbarButtons").Children());
+            int buttonCount = buttons.Count;
 
-            foreach (var buttonElement in buttons)
+            for (int i = 0; i < buttonCount; i++)
             {
-                Button button = buttonElement.Q<Button>("HotbarButton");
+                Button button = buttons[i].Q<Button>("HotbarButton");
+                button.clicked += () => AssignItemToHotbarIndex(button);
                 _hotbarAssignmentButtons.Add(button);
 
-                if (_firstHotbarButtonIndex < 0)
+                if (i == 0)
                 {
                     _firstHotbarButtonIndex = int.Parse(button.text) - 1;
                     _hotbarButtonSelectedBorderColor = button.resolvedStyle.borderTopColor;
@@ -58,11 +66,22 @@ namespace Project.UI
             _nameLabel.text = craftingIngredient.name;
             _icon.style.backgroundImage = new StyleBackground(craftingIngredient.Icon);
             _descriptionLabel.text = craftingIngredient.Description;
-            UpdateHotbarIndex(hotbarIndex);
+
+            if (craftingIngredient.CanBeInHotbar)
+            {
+                _hotbarButtonsPanel.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+                UpdateHotbarIndex(hotbarIndex);
+            }
+            else
+            {
+                _hotbarButtonsPanel.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
+            }
         }
 
         public void UpdateHotbarIndex(int hotbarIndex = -1)
         {
+            _currentHotbarIndex = hotbarIndex;
+
             for (int i = _hotbarAssignmentButtons.Count - 1; i >= 0; i--)
             {
                 bool isSelected = hotbarIndex == i + _firstHotbarButtonIndex;
@@ -75,6 +94,13 @@ namespace Project.UI
                 button.style.borderRightColor = borderColor;
                 button.style.opacity = new StyleFloat(isSelected ? _hotbarButtonSelectedOpacity : 1);
             }
+        }
+
+        private void AssignItemToHotbarIndex(Button button)
+        {
+            int newHotbarIndex = int.Parse(button.text) - 1;
+            if (_currentHotbarIndex == newHotbarIndex) return;
+            _onAssignItemToHotbarIndex?.Invoke(newHotbarIndex, _currentHotbarIndex);
         }
     }
 }

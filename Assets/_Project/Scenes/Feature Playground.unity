@@ -1128,7 +1128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 989092614}
-  _craftingIngredient: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
+  _listElementTemplate: {fileID: 9197481963319205126, guid: 54ea0d81891a0402184ec769fbfb862c, type: 3}
+  _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
 --- !u!1 &1081593217
 GameObject:
   m_ObjectHideFlags: 3
@@ -2351,6 +2352,10 @@ PrefabInstance:
       propertyPath: _itemInHand
       value: 
       objectReference: {fileID: 11400000, guid: 143ca40ec639b4e61aabc3e8b13b14b9, type: 2}
+    - target: {fileID: 1995746023397850510, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
+      propertyPath: _inventoryWindow
+      value: 
+      objectReference: {fileID: 989092616}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ddbe9a5ffdd4d92a05472958b138ea, type: 3}
 --- !u!1001 &3538353694424703252

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Project.Combat;
+using Project.Items;
 using Project.UI;
 
 namespace Project.Characters
@@ -10,6 +11,7 @@ namespace Project.Characters
         [SerializeField] private DamageableReferenceSO _referenceToSelf = null;
         [SerializeField] private HeartHUD _heartHUD = null;
         [SerializeField] private HotbarHUD _hotbarHUD = null;
+        [SerializeField] private InventoryWindow _inventoryWindow = null;
 
         protected override void Awake()
         {
@@ -20,6 +22,8 @@ namespace Project.Characters
         protected void Start()
         {
             _heartHUD.CreateHearts(Mathf.RoundToInt(_health));
+            _inventoryWindow.AddItemToHotbar = AddToHotbar;
+            _inventoryWindow.RemoveItemFromHotbar = RemoveFromHotbar;
             // TESTING //
             _inventory.HotbarItems.Clear();
 
@@ -31,7 +35,7 @@ namespace Project.Characters
 
             SetHotbarIndex(0);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = _inventory.HotbarItems.Count; i < 7; i++)
             {
                 _inventory.HotbarItems.Add(null);
                 _hotbarHUD.AddSlot();
@@ -96,6 +100,13 @@ namespace Project.Characters
             if (context.performed) CycleToPreviousHotbarItem();
         }
 
+        public void ToggleInventoryWindow(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            if (!_inventoryWindow.IsOpen) _inventoryWindow.Open();
+            else _inventoryWindow.Close();
+        }
+
         protected override void SetHotbarIndex(int index)
         {
             if (_hotbarIndex >= 0) _hotbarHUD.SetSlotSelected(_hotbarIndex, false);
@@ -103,7 +114,7 @@ namespace Project.Characters
             _hotbarHUD.SetSlotSelected(index, true);
         }
 
-        protected override void AddToHotbar(Items.ItemSO item, int hotbarIndex = -1)
+        protected override void AddToHotbar(ItemSO item, int hotbarIndex = -1)
         {
             base.AddToHotbar(item, hotbarIndex);
             int index = hotbarIndex;

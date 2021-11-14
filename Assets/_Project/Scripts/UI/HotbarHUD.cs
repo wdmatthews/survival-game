@@ -21,7 +21,7 @@ namespace Project.UI
 
         public void AddSlot()
         {
-            VisualElement slotElement = new List<VisualElement>(_hotbarSlotTemplate.Instantiate().Children())[0];
+            VisualElement slotElement = _hotbarSlotTemplate.Instantiate().ElementAt(0);
             HotbarSlotUI slot = new HotbarSlotUI(slotElement,
                 slotElement.Q("ItemIcon"), slotElement.Q<Label>("AmountLabel"));
             slot.SetItem();
