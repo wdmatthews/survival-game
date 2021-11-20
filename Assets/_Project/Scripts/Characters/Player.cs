@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Project.Building;
 using Project.Combat;
 using Project.Items;
 using Project.UI;
@@ -12,6 +13,7 @@ namespace Project.Characters
         [SerializeField] private HeartHUD _heartHUD = null;
         [SerializeField] private HotbarHUD _hotbarHUD = null;
         [SerializeField] private InventoryWindow _inventoryWindow = null;
+        [SerializeField] private BuildWindow _buildWindow = null;
 
         protected override void Awake()
         {
@@ -24,6 +26,7 @@ namespace Project.Characters
             _heartHUD.CreateHearts(Mathf.RoundToInt(_health));
             _inventoryWindow.AddItemToHotbar = AddToHotbar;
             _inventoryWindow.RemoveItemFromHotbar = RemoveFromHotbar;
+            _buildWindow.BuildStructure = BuildStructure;
             // TESTING //
             _inventory.HotbarItems.Clear();
 
@@ -132,6 +135,25 @@ namespace Project.Characters
         {
             base.RemoveFromHotbar(hotbarIndex);
             _hotbarHUD.SetSlotItem(hotbarIndex, null);
+        }
+
+        protected override void Interact()
+        {
+            base.Interact();
+
+            if (_nearbyStructureNode) _buildWindow.Open();
+        }
+
+        private void BuildStructure(StructureSO structure)
+        {
+            _buildWindow.Close();
+            // Allow for user to rotate structure and then place it
+        }
+
+        protected override void OnMovedAwayFromStructureNode()
+        {
+            base.OnMovedAwayFromStructureNode();
+            _buildWindow.Close();
         }
     }
 }

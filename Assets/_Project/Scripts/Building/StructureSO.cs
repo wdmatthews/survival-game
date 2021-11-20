@@ -4,7 +4,7 @@ using Project.Items;
 namespace Project.Building
 {
     [CreateAssetMenu(fileName = "New Structure", menuName = "Project/Building/Structure")]
-    public class StructureSO : ScriptableObject
+    public class StructureSO : ItemSO
     {
         public Structure Prefab = null;
         public CraftingIngredientStack[] Ingredients = { };

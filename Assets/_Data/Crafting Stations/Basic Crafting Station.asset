@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52694605fadaa43178499f104f672fe3, type: 3}
   m_Name: Basic Crafting Station
   m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Description: A station perfect for fitting in a backpack and crafting the basics
+  CanBeInHotbar: 0
+  CooldownDuration: 0
   Recipes:
   - {fileID: 11400000, guid: 08039d7f7e1c648e8bea8856cb06749a, type: 2}

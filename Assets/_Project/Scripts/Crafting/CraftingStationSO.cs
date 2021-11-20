@@ -4,7 +4,7 @@ using Project.Items;
 namespace Project.Crafting
 {
     [CreateAssetMenu(fileName = "New Crafting Station", menuName = "Project/Crafting/Crafting Station")]
-    public class CraftingStationSO : ScriptableObject
+    public class CraftingStationSO : ItemSO
     {
         public CraftingRecipeSO[] Recipes = { };
 

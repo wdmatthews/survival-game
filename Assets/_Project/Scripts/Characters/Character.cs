@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Project.Building;
 using Project.Combat;
 using Project.Crafting;
 using Project.Items;
 using Project.Utilities;
+using Project.World;
 
 namespace Project.Characters
 {
@@ -26,6 +28,7 @@ namespace Project.Characters
         protected int _hotbarIndex = 0;
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
+        protected StructureNode _nearbyStructureNode = null;
 
         protected override void Awake()
         {
@@ -74,6 +77,10 @@ namespace Project.Characters
                 Monster monster = other.GetComponent<Monster>();
                 if (!_nearbyMonsters.Contains(monster)) _nearbyMonsters.Add(monster);
             }
+            else if (_characterData.StructureNodeLayers.Contains(colliderLayer))
+            {
+                _nearbyStructureNode = other.GetComponent<StructureNode>();
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -88,6 +95,12 @@ namespace Project.Characters
             else if (_characterData.MonsterLayers.Contains(colliderLayer))
             {
                 _nearbyMonsters.Remove(other.GetComponent<Monster>());
+            }
+            else if (_characterData.StructureNodeLayers.Contains(colliderLayer)
+                && _nearbyStructureNode && other.gameObject == _nearbyStructureNode.gameObject)
+            {
+                _nearbyStructureNode = null;
+                OnMovedAwayFromStructureNode();
             }
         }
 
@@ -118,9 +131,9 @@ namespace Project.Characters
             _itemInHand.Use(_nearbyMonsters);
         }
 
-        protected void Interact()
+        protected virtual void Interact()
         {
-
+            
         }
 
         protected virtual void SetHotbarIndex(int index)
@@ -161,6 +174,11 @@ namespace Project.Characters
         protected virtual void RemoveItemFromHand()
         {
             _itemInHand = null;
+        }
+
+        protected virtual void OnMovedAwayFromStructureNode()
+        {
+
         }
     }
 }

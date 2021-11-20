@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="StructureListElement" style="height: 64px; flex-direction: row;">
+        <ui:VisualElement name="Icon" style="width: 48px; height: 48px; margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/_Project/UI/Circle.png?fileID=21300000&amp;guid=338df08cc8b5a4956af9f0c71c516ff1&amp;type=3#Circle&apos;);" />
+        <ui:Label text="Name" display-tooltip-when-elided="true" name="Name" style="-unity-font-definition: url(&apos;project://database/Assets/Google%20Fonts/Montserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&amp;guid=2146e1aac330d47a08c10b93fe36765e&amp;type=2#Montserrat-Bold SDF&apos;); -unity-text-align: middle-left; font-size: 32px; padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px; color: rgb(255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>

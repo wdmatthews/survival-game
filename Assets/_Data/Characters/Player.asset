@@ -30,3 +30,6 @@ MonoBehaviour:
   MonsterLayers:
     serializedVersion: 2
     m_Bits: 1024
+  StructureNodeLayers:
+    serializedVersion: 2
+    m_Bits: 8192
