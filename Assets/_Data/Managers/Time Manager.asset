@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a041ac4ef174e0ca87ee4d7d4cd4b5, type: 3}
   m_Name: Time Manager
   m_EditorClassIdentifier: 
-  MinutesPerDay: 0
+  MinutesPerDay: 1
   MinutesPerNight: 1

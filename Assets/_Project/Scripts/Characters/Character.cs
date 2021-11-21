@@ -99,8 +99,8 @@ namespace Project.Characters
             else if (_characterData.StructureNodeLayers.Contains(colliderLayer)
                 && _nearbyStructureNode && other.gameObject == _nearbyStructureNode.gameObject)
             {
-                _nearbyStructureNode = null;
                 OnMovedAwayFromStructureNode();
+                _nearbyStructureNode = null;
             }
         }
 

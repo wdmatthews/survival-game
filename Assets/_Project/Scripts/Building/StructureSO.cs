@@ -7,6 +7,7 @@ namespace Project.Building
     public class StructureSO : ItemSO
     {
         public Structure Prefab = null;
+        public Transform PreviewPrefab = null;
         public CraftingIngredientStack[] Ingredients = { };
 
         public Structure Build(Vector3 position, int angleIndex, InventorySO inventory)

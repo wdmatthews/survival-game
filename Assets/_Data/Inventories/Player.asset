@@ -23,7 +23,7 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: 0f40410f075d3472a8c54c409b33b6db, type: 2}
     Amount: 1
   - Item: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
-    Amount: 3
+    Amount: 1
   HotbarItems:
   - Item: {fileID: 11400000, guid: 143ca40ec639b4e61aabc3e8b13b14b9, type: 2}
     Amount: 1
@@ -31,8 +31,8 @@ MonoBehaviour:
     Amount: 1
   - Item: {fileID: 11400000, guid: 0f40410f075d3472a8c54c409b33b6db, type: 2}
     Amount: 1
-  - Item: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
-    Amount: 3
+  - Item: {fileID: 0}
+    Amount: 0
   - Item: {fileID: 0}
     Amount: 0
   - Item: {fileID: 0}

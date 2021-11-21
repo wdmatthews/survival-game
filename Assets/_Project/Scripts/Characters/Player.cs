@@ -15,6 +15,11 @@ namespace Project.Characters
         [SerializeField] private InventoryWindow _inventoryWindow = null;
         [SerializeField] private BuildWindow _buildWindow = null;
 
+        private bool _isPreviewingStructure = false;
+        private StructureSO _previewStructureData = null;
+        private Transform _previewStructure = null;
+        private int _previewAngleIndex = 0;
+
         protected override void Awake()
         {
             base.Awake();
@@ -144,16 +149,63 @@ namespace Project.Characters
             if (_nearbyStructureNode) _buildWindow.Open();
         }
 
-        private void BuildStructure(StructureSO structure)
-        {
-            _buildWindow.Close();
-            // Allow for user to rotate structure and then place it
-        }
-
         protected override void OnMovedAwayFromStructureNode()
         {
             base.OnMovedAwayFromStructureNode();
             _buildWindow.Close();
+
+            if (_isPreviewingStructure)
+            {
+                _nearbyStructureNode.EndPreview();
+                EndPreview();
+            }
+        }
+
+        public void NextAngleIndex(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !_isPreviewingStructure) return;
+            _previewAngleIndex += 1;
+            if (_previewAngleIndex >= 4) _previewAngleIndex = 0;
+            _previewStructure.localEulerAngles = new Vector3(0, _previewAngleIndex * 90, 0);
+        }
+
+        public void PreviousAngleIndex(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !_isPreviewingStructure) return;
+            _previewAngleIndex -= 1;
+            if (_previewAngleIndex < 0) _previewAngleIndex = 3;
+            _previewStructure.localEulerAngles = new Vector3(0, _previewAngleIndex * 90, 0);
+        }
+
+        private void BuildStructure(StructureSO structure)
+        {
+            _buildWindow.Close();
+            _isPreviewingStructure = true;
+            _previewAngleIndex = 0;
+            _previewStructureData = structure;
+            _previewStructure = _nearbyStructureNode.StartPreview(structure);
+        }
+
+        private void EndPreview()
+        {
+            _isPreviewingStructure = false;
+            _previewStructureData = null;
+            _previewStructure = null;
+            _nearbyStructureNode = null;
+        }
+
+        public void CancelBuild(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !_isPreviewingStructure) return;
+            _nearbyStructureNode.EndPreview();
+            EndPreview();
+        }
+
+        public void ConfirmBuild(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !_isPreviewingStructure) return;
+            _nearbyStructureNode.ConfirmPreview(_previewAngleIndex, _inventory);
+            EndPreview();
         }
     }
 }
