@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Project.Building;
 using Project.Combat;
 using Project.Crafting;
+using Project.Growing;
 using Project.Items;
 using Project.Utilities;
 using Project.World;
@@ -29,6 +29,7 @@ namespace Project.Characters
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
         protected StructureNode _nearbyStructureNode = null;
+        protected List<Crop> _nearbyCrops = new List<Crop>();
 
         protected override void Awake()
         {
@@ -81,6 +82,11 @@ namespace Project.Characters
             {
                 _nearbyStructureNode = other.GetComponent<StructureNode>();
             }
+            else if (_characterData.CropLayers.Contains(colliderLayer))
+            {
+                Crop crop = other.GetComponent<Crop>();
+                if (!_nearbyCrops.Contains(crop)) _nearbyCrops.Add(crop);
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -101,6 +107,10 @@ namespace Project.Characters
             {
                 OnMovedAwayFromStructureNode();
                 _nearbyStructureNode = null;
+            }
+            else if (_characterData.CropLayers.Contains(colliderLayer))
+            {
+                _nearbyCrops.Remove(other.GetComponent<Crop>());
             }
         }
 
@@ -123,6 +133,12 @@ namespace Project.Characters
         protected void Use()
         {
             _shouldUse = true;
+
+            foreach (var crop in _nearbyCrops)
+            {
+                crop.Harvest(_inventory);
+            }
+
             if (!_itemInHand) return;
             _itemUseCooldownTimer = _itemInHand.CooldownDuration;
             _itemInHand.Use();

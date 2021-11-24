@@ -17,6 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7af76dd9d533a4ecc822afbbe21abf1e, type: 2}
   TimeManager: {fileID: 11400000, guid: 1a276dc9ba6294b5ab5491bc225e9eed, type: 2}
   PlayerReference: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}
-  Region: {fileID: 11400000, guid: e733b0dbcf5e640088674f854487fa9c, type: 2}
-  CurrentChunk: {fileID: 0}
-  NearbyChunks: []
+  LocationManager: {fileID: 11400000, guid: d48c57ffd86a94918b1e98c2dcbda539, type: 2}

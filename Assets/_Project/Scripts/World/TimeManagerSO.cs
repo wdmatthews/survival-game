@@ -1,13 +1,14 @@
 using UnityEngine;
 using Project.UI;
 
-namespace Project.Time
+namespace Project.World
 {
-    [CreateAssetMenu(fileName = "Time Manager", menuName = "Project/Time/Time Manager")]
+    [CreateAssetMenu(fileName = "Time Manager", menuName = "Project/World/Time Manager")]
     public class TimeManagerSO : ScriptableObject
     {
         public int MinutesPerDay = 1;
         public int MinutesPerNight = 1;
+        public LocationManagerSO LocationManager = null;
 
         [System.NonSerialized] public TimeHUD TimeHUD = null;
         [System.NonSerialized] public int Day = 0;
@@ -20,6 +21,7 @@ namespace Project.Time
             MinutesLeftBeforeNextNight = MinutesPerDay;
             MinutesLeftBeforeNextDay = MinutesPerNight;
             IsDay = true;
+            LocationManager.OnNextDay();
             TimeHUD.UpdateTime(true, Day, MinutesLeftBeforeNextNight);
         }
 
@@ -53,6 +55,7 @@ namespace Project.Time
             Day++;
             MinutesLeftBeforeNextNight = MinutesPerDay;
             MinutesLeftBeforeNextDay = MinutesPerNight;
+            LocationManager.OnNextDay();
             TimeHUD.UpdateTime(true, Day, MinutesLeftBeforeNextNight);
         }
 

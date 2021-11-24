@@ -27,6 +27,7 @@ namespace Project.Growing
 
         public void Harvest(InventorySO inventory)
         {
+            if (!_isReadyToHarvest) return;
             _isReadyToHarvest = false;
             _growTimer = _cropData.GrowthTime;
             inventory.AddItem(_cropData.Food, 1);

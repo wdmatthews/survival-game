@@ -17,5 +17,6 @@ namespace Project.Characters
         public LayerMask ResourceLayers = 0;
         public LayerMask MonsterLayers = 0;
         public LayerMask StructureNodeLayers = 0;
+        public LayerMask CropLayers = 0;
     }
 }

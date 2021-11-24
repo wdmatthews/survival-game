@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Project.Building;
 using Project.Combat;
+using Project.Growing;
 using Project.Items;
 using Project.Utilities;
 
@@ -15,7 +17,7 @@ namespace Project.World
         [SerializeField] private float _maxSpawnDistanceFromPlayer = 1;
         [SerializeField] private LayerMask _characterLayers = 0;
         [SerializeField] private ResourcePercentage[] _resourcePercentages = { };
-        [SerializeField] private MonsterManagerSO _monsterManager = null;
+        [SerializeField] private LocationManagerSO _locationManager = null;
         [SerializeField] private List<Chunk> _nearbyChunks = new List<Chunk>();
 
         private ResourceNode[] _resourceNodes = { };
@@ -58,7 +60,7 @@ namespace Project.World
 
         private void OnTriggerStay(Collider other)
         {
-            if (!_monsterManager.CurrentChunk) SetAsCurrentChunk(other);
+            if (!_locationManager.CurrentChunk) SetAsCurrentChunk(other);
         }
 
         private void OnTriggerExit(Collider other)
@@ -68,7 +70,7 @@ namespace Project.World
             if (_characterLayers.Contains(colliderLayer)
                 && !(other is SphereCollider))
             {
-                _monsterManager.CurrentChunk = null;
+                _locationManager.CurrentChunk = null;
             }
         }
 
@@ -79,9 +81,9 @@ namespace Project.World
             if (_characterLayers.Contains(colliderLayer)
                 && !(other is SphereCollider))
             {
-                _monsterManager.Region = _region;
-                _monsterManager.CurrentChunk = this;
-                _monsterManager.NearbyChunks = _nearbyChunks;
+                _locationManager.Region = _region;
+                _locationManager.CurrentChunk = this;
+                _locationManager.NearbyChunks = _nearbyChunks;
             }
         }
 
@@ -163,6 +165,17 @@ namespace Project.World
             if (!monsterNode || distanceFromPlayer < _minSpawnDistanceFromPlayer
                 || distanceFromPlayer > _maxSpawnDistanceFromPlayer) return null;
             return monsterNode.Spawn(monsterData, Random.Range(0, 4), onDie);
+        }
+
+        public void GrowCrops()
+        {
+            for (int i = 0; i < _structureNodeCount; i++)
+            {
+                StructureNode node = _structureNodes[i];
+                Structure structure = node.BuiltStructure;
+                if (!structure) continue;
+                if (structure is Crop crop) crop.Grow();
+            }
         }
     }
 }
