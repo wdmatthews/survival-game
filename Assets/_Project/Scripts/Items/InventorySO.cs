@@ -72,7 +72,7 @@ namespace Project.Items
         {
             ItemStack stack = ItemsByItemData[item];
             if (index < 0) HotbarItems.Add(stack);
-            else HotbarItems.Insert(index, stack);
+            else HotbarItems[index] = stack;
             HotbarItemsByItemData.Add(item, stack);
         }
 
@@ -82,6 +82,16 @@ namespace Project.Items
             if (index < 0) HotbarItems.Remove(stack);
             else HotbarItems[index] = null;
             HotbarItemsByItemData.Remove(item);
+        }
+
+        public int GetHotbarItemIndex(ItemSO item)
+        {
+            for (int i = HotbarItems.Count - 1; i >= 0; i--)
+            {
+                if (HotbarItems[i] != null && HotbarItems[i].Item == item) return i;
+            }
+
+            return -1;
         }
     }
 }

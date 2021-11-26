@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Project.Building;
 using Project.Combat;
+using Project.Growing;
 using Project.Items;
 using Project.UI;
 
@@ -14,6 +15,8 @@ namespace Project.Characters
         [SerializeField] private HotbarHUD _hotbarHUD = null;
         [SerializeField] private InventoryWindow _inventoryWindow = null;
         [SerializeField] private BuildWindow _buildWindow = null;
+        [SerializeField] private UpgradeWindow _upgradeWindow = null;
+        [SerializeField] private CookingWindow _cookingWindow = null;
 
         private bool _isPreviewingStructure = false;
         private StructureSO _previewStructureData = null;
@@ -32,8 +35,14 @@ namespace Project.Characters
             _inventoryWindow.AddItemToHotbar = AddToHotbar;
             _inventoryWindow.RemoveItemFromHotbar = RemoveFromHotbar;
             _buildWindow.BuildStructure = BuildStructure;
+            _upgradeWindow.UpgradeItem = UpgradeItem;
             // TESTING //
             _inventory.HotbarItems.Clear();
+
+            foreach (var stack in _inventory.Resources)
+            {
+                _inventory.ResourcesByResourceData.Add(stack.Resource, stack);
+            }
 
             foreach (var stack in _inventory.Items)
             {
@@ -59,12 +68,6 @@ namespace Project.Characters
         public void Jump(InputAction.CallbackContext context)
         {
             _shouldJump = context.performed;
-            // TESTING //
-            if (context.performed)
-            {
-                RemoveFromHotbar(_hotbarIndex);
-            }
-            // TESTING //
         }
 
         public void Use(InputAction.CallbackContext context)
@@ -76,6 +79,17 @@ namespace Project.Characters
         public void Interact(InputAction.CallbackContext context)
         {
             if (context.performed) Interact();
+        }
+
+        protected override void Use()
+        {
+            base.Use();
+
+            if (_itemInHand && _itemInHand is FoodSO)
+            {
+                if (!_inventory.ItemsByItemData.ContainsKey(_itemInHand)) _hotbarHUD.SetSlotItem(_hotbarIndex, null);
+                else _hotbarHUD.SetSlotItem(_hotbarIndex, _itemInHand.Icon, _inventory.HotbarItems[_hotbarIndex].Amount);
+            }
         }
 
         public override void TakeDamage(float amount)
@@ -146,7 +160,13 @@ namespace Project.Characters
         {
             base.Interact();
 
-            if (_nearbyStructureNode) _buildWindow.Open();
+            if (_nearbyWorkstation)
+            {
+                string workstationName = _nearbyWorkstation.Name;
+                if (workstationName == "Anvil") _upgradeWindow.Open();
+                // else if (workstationName == "Cooking Spit") _cookingWindow.Open();
+            }
+            else if (_nearbyStructureNode) _buildWindow.Open();
         }
 
         protected override void OnMovedAwayFromStructureNode()
@@ -206,6 +226,29 @@ namespace Project.Characters
             if (!context.performed || !_isPreviewingStructure) return;
             _nearbyStructureNode.ConfirmPreview(_previewAngleIndex, _inventory);
             EndPreview();
+        }
+
+        private void UpgradeItem(UpgradableItemSO itemToUpgrade)
+        {
+            foreach (CraftingIngredientStack stack in itemToUpgrade.IngredientsNeededToUpgrade)
+            {
+                if (stack.Ingredient is ResourceTypeSO resource)
+                {
+                    _inventory.RemoveResource(resource, stack.Amount);
+                }
+                else if (stack.Ingredient is ItemSO item
+                    && item != itemToUpgrade)
+                {
+                    _inventory.RemoveItem(item, stack.Amount);
+                }
+            }
+
+            int itemHotbarIndex = _inventory.GetHotbarItemIndex(itemToUpgrade);
+            RemoveFromHotbar(itemHotbarIndex);
+            _inventory.RemoveItem(itemToUpgrade, 1);
+            _inventory.AddItem(itemToUpgrade.ItemAtNextLevel, 1);
+            AddToHotbar(itemToUpgrade.ItemAtNextLevel, itemHotbarIndex);
+            _upgradeWindow.Close();
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Project.Building;
 using Project.Combat;
-using Project.Crafting;
 using Project.Growing;
 using Project.Items;
 using Project.Utilities;
@@ -16,7 +16,6 @@ namespace Project.Characters
         [SerializeField] protected CharacterController _controller = null;
         [SerializeField] protected Transform _groundCheckPoint = null;
         [SerializeField] protected InventorySO _inventory = null;
-        [SerializeField] protected CraftingStationSO _craftingStation = null;
 
         protected CharacterSO _characterData = null;
         protected Vector3 _velocity = new Vector3();
@@ -30,6 +29,7 @@ namespace Project.Characters
         protected bool _shouldUse = false;
         protected StructureNode _nearbyStructureNode = null;
         protected List<Crop> _nearbyCrops = new List<Crop>();
+        protected Workstation _nearbyWorkstation = null;
 
         protected override void Awake()
         {
@@ -87,6 +87,10 @@ namespace Project.Characters
                 Crop crop = other.GetComponent<Crop>();
                 if (!_nearbyCrops.Contains(crop)) _nearbyCrops.Add(crop);
             }
+            else if (_characterData.WorkstationLayers.Contains(colliderLayer))
+            {
+                _nearbyWorkstation = other.GetComponent<Workstation>();
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -130,7 +134,7 @@ namespace Project.Characters
             }
         }
 
-        protected void Use()
+        protected virtual void Use()
         {
             _shouldUse = true;
 
@@ -145,6 +149,7 @@ namespace Project.Characters
             _itemInHand.Use(this);
             _itemInHand.Use(_nearbyResource, _inventory);
             _itemInHand.Use(_nearbyMonsters);
+            if (_itemInHand is FoodSO) _inventory.RemoveItem(_itemInHand, 1);
         }
 
         protected virtual void Interact()
