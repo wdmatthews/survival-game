@@ -68,12 +68,11 @@ namespace Project.UI
             _descriptionPanel.UpdateDescription(craftingIngredient, hotbarIndex);
         }
 
-        private void AssignItemToHotbarIndex(int newIndex, int oldIndex)
+        private void AssignItemToHotbarIndex(CraftingIngredientSO item, int newIndex, int oldIndex)
         {
             _descriptionPanel.UpdateHotbarIndex(newIndex);
-            ItemSO item = _inventory.HotbarItems[oldIndex].Item;
-            RemoveItemFromHotbar.Invoke(oldIndex);
-            AddItemToHotbar.Invoke(item, newIndex);
+            if (oldIndex >= 0) RemoveItemFromHotbar.Invoke(oldIndex);
+            AddItemToHotbar.Invoke((ItemSO)item, newIndex);
         }
     }
 }

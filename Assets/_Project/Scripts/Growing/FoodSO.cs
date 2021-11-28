@@ -8,6 +8,7 @@ namespace Project.Growing
     public class FoodSO : ItemSO
     {
         public float HealthRegainedFromEating = 1;
+        public FoodStack[] FoodNeededToCook = { };
 
         public override void Use(MonoBehaviour monoBehaviour)
         {

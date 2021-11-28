@@ -36,6 +36,7 @@ namespace Project.Characters
             _inventoryWindow.RemoveItemFromHotbar = RemoveFromHotbar;
             _buildWindow.BuildStructure = BuildStructure;
             _upgradeWindow.UpgradeItem = UpgradeItem;
+            _cookingWindow.CookFood = CookFood;
             // TESTING //
             _inventory.HotbarItems.Clear();
 
@@ -164,7 +165,7 @@ namespace Project.Characters
             {
                 string workstationName = _nearbyWorkstation.Name;
                 if (workstationName == "Anvil") _upgradeWindow.Open();
-                // else if (workstationName == "Cooking Spit") _cookingWindow.Open();
+                 else if (workstationName == "Cooking Spit") _cookingWindow.Open();
             }
             else if (_nearbyStructureNode) _buildWindow.Open();
         }
@@ -249,6 +250,33 @@ namespace Project.Characters
             _inventory.AddItem(itemToUpgrade.ItemAtNextLevel, 1);
             AddToHotbar(itemToUpgrade.ItemAtNextLevel, itemHotbarIndex);
             _upgradeWindow.Close();
+        }
+
+        private void CookFood(FoodSO itemToCook)
+        {
+            foreach (FoodStack stack in itemToCook.FoodNeededToCook)
+            {
+                FoodSO food = stack.Food;
+                int itemHotbarIndex = _inventory.GetHotbarItemIndex(food);
+
+                if (itemHotbarIndex < 0 || _inventory.ItemsByItemData[food].Amount > stack.Amount)
+                {
+                    _inventory.RemoveItem(food, stack.Amount);
+
+                    if (itemHotbarIndex >= 0)
+                    {
+                        _hotbarHUD.SetSlotItem(itemHotbarIndex, food.Icon, _inventory.HotbarItems[itemHotbarIndex].Amount);
+                    }
+                }
+                else
+                {
+                    RemoveFromHotbar(itemHotbarIndex);
+                    _inventory.RemoveItem(food, stack.Amount);
+                }
+            }
+
+            _inventory.AddItem(itemToCook, 1);
+            _cookingWindow.Close();
         }
     }
 }

@@ -1,40 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Project.Items;
+using Project.Growing;
 
 namespace Project.UI
 {
-    public class UpgradeWindowItemsList
+    public class CookingWindowItemsList
     {
         private ListView _listView = null;
         private VisualTreeAsset _listElementTemplate = null;
-        private List<UpgradableItemSO> _items = new();
-        private System.Action<UpgradableItemSO> _onSelectElement = null;
+        private List<FoodSO> _items = new();
+        private System.Action<FoodSO> _onSelectElement = null;
 
-        public UpgradeWindowItemsList(ListView listView, VisualTreeAsset listElementTemplate,
-            System.Action<UpgradableItemSO> onSelectElement, InventorySO inventory)
+        public CookingWindowItemsList(ListView listView, VisualTreeAsset listElementTemplate,
+            System.Action<FoodSO> onSelectElement, FoodSO[] cookableFoods)
         {
-            SetItems(inventory);
             _listView = listView;
             _listElementTemplate = listElementTemplate;
             _onSelectElement = onSelectElement;
+            _items = new List<FoodSO>(cookableFoods);
             _listView.itemsSource = _items;
             _listView.onItemsChosen += SelectElements;
             _listView.onSelectionChange += SelectElements;
             _listView.makeItem = MakeListElement;
             _listView.bindItem = BindListElement;
-        }
-
-        public void SetItems(InventorySO inventory)
-        {
-            _items.Clear();
-
-            foreach (ItemStack itemStack in inventory.Items)
-            {
-                if (itemStack.Item is UpgradableItemSO upgradableItem
-                    && upgradableItem.ItemAtNextLevel) _items.Add(upgradableItem);
-            }
         }
 
         public void ClearSelection()
@@ -51,7 +40,7 @@ namespace Project.UI
         {
             VisualElement icon = element.Q("Icon");
             Label nameLabel = element.Q<Label>("Name");
-            UpgradableItemSO item = _items[index].ItemAtNextLevel;
+            FoodSO item = _items[index];
 
             icon.style.backgroundImage = new StyleBackground(item.Icon);
             nameLabel.text = item.name;
@@ -61,7 +50,7 @@ namespace Project.UI
         {
             foreach (var elementObject in elementObjects)
             {
-                UpgradableItemSO item = (UpgradableItemSO)elementObject;
+                FoodSO item = (FoodSO)elementObject;
                 _onSelectElement?.Invoke(item);
             }
         }

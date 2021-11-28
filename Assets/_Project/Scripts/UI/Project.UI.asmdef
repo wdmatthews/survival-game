@@ -3,6 +3,7 @@
     "rootNamespace": "Project.UI",
     "references": [
         "GUID:dd7dc48cf5a764e3aa75ed87b67fd85b",
+        "GUID:cc65487bdbd2a4f99b271d5d47abf215",
         "GUID:d1308cd8674c94d70bfaffac71307d1f"
     ],
     "includePlatforms": [],

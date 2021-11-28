@@ -18,10 +18,11 @@ namespace Project.UI
         private float _hotbarButtonSelectedOpacity = 0;
         private int _firstHotbarButtonIndex = -1;
         private int _currentHotbarIndex = -1;
-        private System.Action<int, int> _onAssignItemToHotbarIndex = null;
+        private System.Action<CraftingIngredientSO, int, int> _onAssignItemToHotbarIndex = null;
+        private CraftingIngredientSO _craftingIngredient = null;
 
         public InventoryWindowDescriptionPanel(VisualElement panel,
-            System.Action<int, int> onAssignItemToHotbarIndex)
+            System.Action<CraftingIngredientSO, int, int> onAssignItemToHotbarIndex)
         {
             _panel = panel;
             _onAssignItemToHotbarIndex = onAssignItemToHotbarIndex;
@@ -63,6 +64,7 @@ namespace Project.UI
         public void UpdateDescription(CraftingIngredientSO craftingIngredient, int hotbarIndex = -1)
         {
             ShowDescription();
+            _craftingIngredient = craftingIngredient;
             _nameLabel.text = craftingIngredient.name;
             _icon.style.backgroundImage = new StyleBackground(craftingIngredient.Icon);
             _descriptionLabel.text = craftingIngredient.Description;
@@ -100,7 +102,7 @@ namespace Project.UI
         {
             int newHotbarIndex = int.Parse(button.text) - 1;
             if (_currentHotbarIndex == newHotbarIndex) return;
-            _onAssignItemToHotbarIndex?.Invoke(newHotbarIndex, _currentHotbarIndex);
+            _onAssignItemToHotbarIndex?.Invoke(_craftingIngredient, newHotbarIndex, _currentHotbarIndex);
         }
     }
 }
