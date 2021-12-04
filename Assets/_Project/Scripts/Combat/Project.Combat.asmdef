@@ -2,6 +2,7 @@
     "name": "Project.Combat",
     "rootNamespace": "Project.Combat",
     "references": [
+        "GUID:dd7dc48cf5a764e3aa75ed87b67fd85b",
         "GUID:d1308cd8674c94d70bfaffac71307d1f",
         "GUID:801d3dbbd707d483f969312829a2cf82"
     ],

@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 3337284083200673754}
   - component: {fileID: 3337284083200673753}
   - component: {fileID: 3337284083200673752}
-  - component: {fileID: -5955118037910149536}
-  m_Layer: 0
-  m_Name: Structure
+  - component: {fileID: 3128246329813553130}
+  m_Layer: 16
+  m_Name: Fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3337284083200673755
 Transform:
@@ -112,7 +112,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &-5955118037910149536
+--- !u!208 &3128246329813553130
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

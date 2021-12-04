@@ -148,6 +148,8 @@ namespace Project.World
 
         public Monster SpawnMonster(MonsterSO monsterData, Vector3 playerPosition, System.Action<Monster> onDie)
         {
+            if (_monsterNodeCount == 0) return null;
+
             MonsterNode monsterNode = null;
             float distanceFromPlayer = 0;
             int spawnAttemptsLeft = _monsterNodeCount;

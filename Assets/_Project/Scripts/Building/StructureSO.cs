@@ -6,6 +6,7 @@ namespace Project.Building
     [CreateAssetMenu(fileName = "New Structure", menuName = "Project/Building/Structure")]
     public class StructureSO : ItemSO
     {
+        public float MaxHealth = 1;
         public Structure Prefab = null;
         public Transform PreviewPrefab = null;
         public CraftingIngredientStack[] Ingredients = { };

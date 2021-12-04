@@ -10,7 +10,11 @@ namespace Project.Combat
         public float Damage = 1;
         public float AttackCooldown = 1;
         public float StopDistanceFromTarget = 1;
+        public float DistanceToTargetFences = 1;
+        public float FenceLineDetectionDistance = 1;
+        public float FenceLineDetectionOffset = -0.5f;
         public LayerMask CharacterLayers = 0;
+        public LayerMask FenceLayers = 0;
 
         [Space]
         [Header("Monster Object References")]

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Project.Building;
 using Project.Utilities;
 
 namespace Project.Combat
@@ -12,11 +13,14 @@ namespace Project.Combat
         [SerializeField] protected NavMeshAgent _navigationAgent = null;
 
         protected MonsterSO _monsterData = null;
+        protected Transform _playerTransform = null;
         protected Transform _moveTarget = null;
         protected List<MonoBehaviour> _nearbyCharacters = new List<MonoBehaviour>();
+        protected List<Structure> _nearbyFences = new List<Structure>();
         protected bool _attackIsCoolingDown = false;
         protected float _attackCooldownTimer = 0;
         protected System.Action<Monster> _onDie = null;
+        protected bool _isTargetingFence = false;
 
         protected override void Awake()
         {
@@ -27,12 +31,38 @@ namespace Project.Combat
 
         protected void Start()
         {
-            _moveTarget = _monsterData.ReferenceToPlayer.Value.transform;
+            _playerTransform = _monsterData.ReferenceToPlayer.Value.transform;
+            _moveTarget = _playerTransform;
         }
 
         protected override void Update()
         {
             base.Update();
+
+            int playerCount = _nearbyCharacters.Count;
+            int fenceCount = _nearbyFences.Count;
+
+            if (_isTargetingFence && !_moveTarget)
+            {
+                _isTargetingFence = false;
+                _moveTarget = _playerTransform;
+            }
+
+            if (!_isTargetingFence && _navigationAgent.remainingDistance > _monsterData.DistanceToTargetFences)
+            {
+                RaycastHit hit;
+                Vector3 direction = (_playerTransform.position - transform.position).normalized;
+                direction.y = 0;
+                Physics.Raycast(transform.position + new Vector3(0, _monsterData.FenceLineDetectionOffset, 0),
+                    direction, out hit,
+                    _monsterData.FenceLineDetectionDistance, _monsterData.FenceLayers);
+                
+                if (hit.collider)
+                {
+                    _isTargetingFence = true;
+                    _moveTarget = hit.collider.transform;
+                }
+            }
 
             transform.LookAt(_moveTarget);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -48,15 +78,13 @@ namespace Project.Combat
                 _navigationAgent.velocity = new Vector3();
             }
 
-            int playerCount = _nearbyCharacters.Count;
-
             if (_attackIsCoolingDown)
             {
                 if (Mathf.Approximately(_attackCooldownTimer, 0)) _attackIsCoolingDown = false;
                 else _attackCooldownTimer = Mathf.Clamp(_attackCooldownTimer - Time.deltaTime,
                     0, _monsterData.AttackCooldown);
             }
-            else if (playerCount > 0) StartAttack();
+            else if (playerCount > 0 || fenceCount > 0) StartAttack();
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -69,6 +97,11 @@ namespace Project.Combat
                 Damageable character = other.GetComponent<Damageable>();
                 if (!_nearbyCharacters.Contains(character)) _nearbyCharacters.Add(character);
             }
+            else if (_monsterData.FenceLayers.Contains(colliderLayer))
+            {
+                Structure fence = other.GetComponent<Structure>();
+                if (!_nearbyFences.Contains(fence)) _nearbyFences.Add(fence);
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -78,6 +111,10 @@ namespace Project.Combat
             if (_monsterData.CharacterLayers.Contains(colliderLayer))
             {
                 _nearbyCharacters.Remove(other.GetComponent<Damageable>());
+            }
+            else if (_monsterData.FenceLayers.Contains(colliderLayer))
+            {
+                _nearbyFences.Remove(other.GetComponent<Structure>());
             }
         }
 
@@ -91,7 +128,17 @@ namespace Project.Combat
 
         public void StartAttack()
         {
+            DamageFences();
             DamageCharacters();
+        }
+
+        public void DamageFences()
+        {
+            for (int i = _nearbyFences.Count - 1; i >= 0; i--)
+            {
+                Structure fence = _nearbyFences[i];
+                fence.TakeDamage(_monsterData.Damage);
+            }
         }
 
         public void DamageCharacters()

@@ -19,8 +19,13 @@ MonoBehaviour:
   Damage: 0.5
   AttackCooldown: 1
   StopDistanceFromTarget: 1
+  DistanceToTargetFences: 3
+  FenceLineDetectionDistance: 2
   CharacterLayers:
     serializedVersion: 2
     m_Bits: 2048
+  FenceLayers:
+    serializedVersion: 2
+    m_Bits: 65536
   Prefab: {fileID: 8274687058642170477, guid: 348929e88fc39469ea034721159162ef, type: 3}
   ReferenceToPlayer: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}

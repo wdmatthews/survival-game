@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a041ac4ef174e0ca87ee4d7d4cd4b5, type: 3}
   m_Name: Time Manager
   m_EditorClassIdentifier: 
-  MinutesPerDay: 1
+  MinutesPerDay: 0
   MinutesPerNight: 1
   LocationManager: {fileID: 11400000, guid: d48c57ffd86a94918b1e98c2dcbda539, type: 2}
