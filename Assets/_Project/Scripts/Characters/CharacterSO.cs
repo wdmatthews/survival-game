@@ -19,5 +19,6 @@ namespace Project.Characters
         public LayerMask StructureNodeLayers = 0;
         public LayerMask CropLayers = 0;
         public LayerMask WorkstationLayers = 0;
+        public LayerMask ChestLayers = 0;
     }
 }

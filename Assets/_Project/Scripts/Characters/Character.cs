@@ -30,6 +30,7 @@ namespace Project.Characters
         protected StructureNode _nearbyStructureNode = null;
         protected List<Crop> _nearbyCrops = new List<Crop>();
         protected Workstation _nearbyWorkstation = null;
+        protected Chest _nearbyChest = null;
 
         protected override void Awake()
         {
@@ -91,6 +92,10 @@ namespace Project.Characters
             {
                 _nearbyWorkstation = other.GetComponent<Workstation>();
             }
+            else if (_characterData.ChestLayers.Contains(colliderLayer))
+            {
+                _nearbyChest = other.GetComponent<Chest>();
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -115,6 +120,16 @@ namespace Project.Characters
             else if (_characterData.CropLayers.Contains(colliderLayer))
             {
                 _nearbyCrops.Remove(other.GetComponent<Crop>());
+            }
+            else if (_characterData.WorkstationLayers.Contains(colliderLayer))
+            {
+                OnMovedAwayFromWorkstation();
+                _nearbyWorkstation = null;
+            }
+            else if (_characterData.ChestLayers.Contains(colliderLayer))
+            {
+                OnMovedAwayFromChest();
+                _nearbyChest = null;
             }
         }
 
@@ -198,6 +213,16 @@ namespace Project.Characters
         }
 
         protected virtual void OnMovedAwayFromStructureNode()
+        {
+
+        }
+
+        protected virtual void OnMovedAwayFromWorkstation()
+        {
+
+        }
+
+        protected virtual void OnMovedAwayFromChest()
         {
 
         }

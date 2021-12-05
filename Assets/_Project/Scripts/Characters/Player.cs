@@ -17,6 +17,7 @@ namespace Project.Characters
         [SerializeField] private BuildWindow _buildWindow = null;
         [SerializeField] private UpgradeWindow _upgradeWindow = null;
         [SerializeField] private CookingWindow _cookingWindow = null;
+        [SerializeField] private ChestWindow _chestWindow = null;
 
         private bool _isPreviewingStructure = false;
         private StructureSO _previewStructureData = null;
@@ -37,6 +38,8 @@ namespace Project.Characters
             _buildWindow.BuildStructure = BuildStructure;
             _upgradeWindow.UpgradeItem = UpgradeItem;
             _cookingWindow.CookFood = CookFood;
+            _chestWindow.AddToChest = AddToChest;
+            _chestWindow.TakeFromChest = TakeFromChest;
             // TESTING //
             _inventory.HotbarItems.Clear();
 
@@ -161,11 +164,12 @@ namespace Project.Characters
         {
             base.Interact();
 
-            if (_nearbyWorkstation)
+            if (_nearbyChest) _chestWindow.Open(_nearbyChest);
+            else if (_nearbyWorkstation)
             {
                 string workstationName = _nearbyWorkstation.Name;
-                if (workstationName == "Anvil") _upgradeWindow.Open();
-                 else if (workstationName == "Cooking Spit") _cookingWindow.Open();
+                if (workstationName == "Cooking Spit") _cookingWindow.Open();
+                else if (workstationName == "Anvil") _upgradeWindow.Open();
             }
             else if (_nearbyStructureNode) _buildWindow.Open();
         }
@@ -180,6 +184,20 @@ namespace Project.Characters
                 _nearbyStructureNode.EndPreview();
                 EndPreview();
             }
+        }
+
+        protected override void OnMovedAwayFromWorkstation()
+        {
+            base.OnMovedAwayFromWorkstation();
+            string workstationName = _nearbyWorkstation.Name;
+            if (workstationName == "Cooking Spit") _cookingWindow.Close();
+            else if (workstationName == "Anvil") _upgradeWindow.Close();
+        }
+
+        protected override void OnMovedAwayFromChest()
+        {
+            base.OnMovedAwayFromChest();
+            _chestWindow.Close();
         }
 
         public void NextAngleIndex(InputAction.CallbackContext context)
@@ -252,31 +270,55 @@ namespace Project.Characters
             _upgradeWindow.Close();
         }
 
+        private void RemoveItemFromInventory(ItemSO item, int amount)
+        {
+            int itemHotbarIndex = _inventory.GetHotbarItemIndex(item);
+
+            if (itemHotbarIndex < 0 || _inventory.ItemsByItemData[item].Amount > amount)
+            {
+                _inventory.RemoveItem(item, amount);
+
+                if (itemHotbarIndex >= 0)
+                {
+                    _hotbarHUD.SetSlotItem(itemHotbarIndex, item.Icon, _inventory.HotbarItems[itemHotbarIndex].Amount);
+                }
+            }
+            else
+            {
+                RemoveFromHotbar(itemHotbarIndex);
+                _inventory.RemoveItem(item, amount);
+            }
+        }
+
         private void CookFood(FoodSO itemToCook)
         {
             foreach (FoodStack stack in itemToCook.FoodNeededToCook)
             {
-                FoodSO food = stack.Food;
-                int itemHotbarIndex = _inventory.GetHotbarItemIndex(food);
-
-                if (itemHotbarIndex < 0 || _inventory.ItemsByItemData[food].Amount > stack.Amount)
-                {
-                    _inventory.RemoveItem(food, stack.Amount);
-
-                    if (itemHotbarIndex >= 0)
-                    {
-                        _hotbarHUD.SetSlotItem(itemHotbarIndex, food.Icon, _inventory.HotbarItems[itemHotbarIndex].Amount);
-                    }
-                }
-                else
-                {
-                    RemoveFromHotbar(itemHotbarIndex);
-                    _inventory.RemoveItem(food, stack.Amount);
-                }
+                RemoveItemFromInventory(stack.Food, stack.Amount);
             }
 
             _inventory.AddItem(itemToCook, 1);
             _cookingWindow.Close();
+        }
+        
+        private void AddToChest(CraftingIngredientSO ingredient, int amount)
+        {
+            if (ingredient is ResourceTypeSO resource) _inventory.RemoveResource(resource, amount);
+            else if (ingredient is ItemSO item)
+            {
+                RemoveItemFromInventory(item, amount);
+            }
+
+            _nearbyChest.Add(ingredient, amount);
+            _chestWindow.Open(_nearbyChest);
+        }
+
+        private void TakeFromChest(CraftingIngredientSO ingredient, int amount)
+        {
+            _nearbyChest.Remove(ingredient, amount);
+            if (ingredient is ResourceTypeSO resource) _inventory.AddResource(resource, amount);
+            else if (ingredient is ItemSO item) _inventory.AddItem(item, amount);
+            _chestWindow.Open(_nearbyChest);
         }
     }
 }

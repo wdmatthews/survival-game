@@ -6,12 +6,14 @@ namespace Project.Items
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Project/Items/Inventory")]
     public class InventorySO : ScriptableObject
     {
-        public List<ResourceStack> Resources = new List<ResourceStack>();
-        public List<ItemStack> Items = new List<ItemStack>();
-        public List<ItemStack> HotbarItems = new List<ItemStack>();
-        public Dictionary<ResourceTypeSO, ResourceStack> ResourcesByResourceData = new Dictionary<ResourceTypeSO, ResourceStack>();
-        public Dictionary<ItemSO, ItemStack> ItemsByItemData = new Dictionary<ItemSO, ItemStack>();
-        public Dictionary<ItemSO, ItemStack> HotbarItemsByItemData = new Dictionary<ItemSO, ItemStack>();
+        public List<ResourceStack> Resources = new();
+        public List<ItemStack> Items = new();
+        public List<ItemStack> HotbarItems = new();
+        public Dictionary<ResourceTypeSO, ResourceStack> ResourcesByResourceData = new();
+        public Dictionary<ItemSO, ItemStack> ItemsByItemData = new();
+        public Dictionary<ItemSO, ItemStack> HotbarItemsByItemData = new();
+
+        [System.NonSerialized] private List<CraftingIngredientStack> _stacks = new();
 
         public void AddResource(ResourceTypeSO resource, int amount)
         {
@@ -92,6 +94,24 @@ namespace Project.Items
             }
 
             return -1;
+        }
+
+        public List<CraftingIngredientStack> GetChestCompatibleStacks()
+        {
+            _stacks.Clear();
+
+            foreach (ResourceStack resource in Resources)
+            {
+                _stacks.Add(new CraftingIngredientStack(resource.Resource, resource.Amount));
+            }
+
+            foreach (ItemStack item in Items)
+            {
+                if (!item.Item.CanBeInChest) continue;
+                _stacks.Add(new CraftingIngredientStack(item.Item, item.Amount));
+            }
+
+            return _stacks;
         }
     }
 }

@@ -15,7 +15,9 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
   Description: A stone anvil useful for upgrading weapons and tools
   CanBeInHotbar: 0
+  CanBeInChest: 0
   CooldownDuration: 0
+  MaxHealth: 0
   Prefab: {fileID: 4661181896590423387, guid: 70e64bb7a88a54c06a847f25435378ac, type: 3}
   PreviewPrefab: {fileID: 5600827011983987772, guid: 8de0a9cff6c8a4a9587e96c83d0b7e7b, type: 3}
   Ingredients:

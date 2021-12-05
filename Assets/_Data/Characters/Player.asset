@@ -39,3 +39,6 @@ MonoBehaviour:
   WorkstationLayers:
     serializedVersion: 2
     m_Bits: 32768
+  ChestLayers:
+    serializedVersion: 2
+    m_Bits: 131072

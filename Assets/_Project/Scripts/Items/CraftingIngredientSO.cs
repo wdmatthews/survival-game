@@ -7,5 +7,6 @@ namespace Project.Items
         public Sprite Icon = null;
         public string Description = "";
         public bool CanBeInHotbar = false;
+        public bool CanBeInChest = false;
     }
 }
