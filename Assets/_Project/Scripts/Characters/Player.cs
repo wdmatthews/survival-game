@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Project.Building;
@@ -18,11 +19,15 @@ namespace Project.Characters
         [SerializeField] private UpgradeWindow _upgradeWindow = null;
         [SerializeField] private CookingWindow _cookingWindow = null;
         [SerializeField] private ChestWindow _chestWindow = null;
+        [SerializeField] private CampfireWindow _campfireRenameWindow = null;
+        [SerializeField] private FastTravelWindow _fastTravelWindow = null;
 
         private bool _isPreviewingStructure = false;
         private StructureSO _previewStructureData = null;
         private Transform _previewStructure = null;
         private int _previewAngleIndex = 0;
+        private float _fastTravelCooldownTimer = 0;
+        private List<CampfireData> _campfires = new();
 
         protected override void Awake()
         {
@@ -40,6 +45,8 @@ namespace Project.Characters
             _cookingWindow.CookFood = CookFood;
             _chestWindow.AddToChest = AddToChest;
             _chestWindow.TakeFromChest = TakeFromChest;
+            _campfireRenameWindow.RenameCampfire = RenameCampfire;
+            _fastTravelWindow.FastTravel = FastTravel;
             // TESTING //
             _inventory.HotbarItems.Clear();
 
@@ -62,6 +69,12 @@ namespace Project.Characters
                 _hotbarHUD.AddSlot();
             }
             // TESTING //
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            _fastTravelCooldownTimer = Mathf.Clamp(_fastTravelCooldownTimer - Time.deltaTime, 0, _characterData.FastTravelCooldownDuration);
         }
 
         public void Move(InputAction.CallbackContext context)
@@ -172,6 +185,8 @@ namespace Project.Characters
                 else if (workstationName == "Anvil") _upgradeWindow.Open();
             }
             else if (_nearbyStructureNode) _buildWindow.Open();
+            // Tents go here
+            else if (_nearbyCampfire) _campfireRenameWindow.Open(GetCampfire(_nearbyCampfire.name));
         }
 
         protected override void OnMovedAwayFromStructureNode()
@@ -244,6 +259,15 @@ namespace Project.Characters
         {
             if (!context.performed || !_isPreviewingStructure) return;
             _nearbyStructureNode.ConfirmPreview(_previewAngleIndex, _inventory);
+
+            if (_previewStructureData.name == "Campfire")
+            {
+                CampfireData campfire = new CampfireData("Unnamed Campfire",
+                    _previewStructure.position + _previewStructure.right + new Vector3(0, 0.5f, 0));
+                _campfires.Add(campfire);
+                _nearbyStructureNode.BuiltStructure.name = campfire.ID;
+            }
+
             EndPreview();
         }
 
@@ -319,6 +343,38 @@ namespace Project.Characters
             if (ingredient is ResourceTypeSO resource) _inventory.AddResource(resource, amount);
             else if (ingredient is ItemSO item) _inventory.AddItem(item, amount);
             _chestWindow.Open(_nearbyChest);
+        }
+
+        public void FastTravel(InputAction.CallbackContext context)
+        {
+            if (!context.performed || !Mathf.Approximately(_fastTravelCooldownTimer, 0)) return;
+            _fastTravelWindow.Open(_campfires);
+        }
+
+        private void FastTravel(CampfireData campfire)
+        {
+            _controller.enabled = false;
+            transform.position = campfire.Position;
+            _controller.enabled = true;
+            _velocity = new Vector3();
+            _fastTravelCooldownTimer = _characterData.FastTravelCooldownDuration;
+            _fastTravelWindow.Close();
+        }
+
+        private CampfireData GetCampfire(string id)
+        {
+            foreach (CampfireData campfire in _campfires)
+            {
+                if (campfire.ID == id) return campfire;
+            }
+
+            return null;
+        }
+
+        private void RenameCampfire(CampfireData campfire, string newName)
+        {
+            campfire.Name = newName;
+            _campfireRenameWindow.Close();
         }
     }
 }

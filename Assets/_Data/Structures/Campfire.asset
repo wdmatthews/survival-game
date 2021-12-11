@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d59b534f5c934b70b82cc2056301749, type: 3}
-  m_Name: Chest
+  m_Name: Campfire
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
-  Description: A chest perfect for storing resources and food
+  Description: A campfire to travel quickly to
   CanBeInHotbar: 0
   CanBeInChest: 0
   CooldownDuration: 0
   MaxHealth: 0
-  Prefab: {fileID: 9191846374399394073, guid: 5a157ef09ff3f4552b533ce5d223f9fb, type: 3}
+  Prefab: {fileID: 3337284083200673756, guid: 29bc65e7956fa49f099bab8f1a988f43, type: 3}
   PreviewPrefab: {fileID: 5600827011983987772, guid: 8de0a9cff6c8a4a9587e96c83d0b7e7b, type: 3}
   Ingredients:
   - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
-    Amount: 2
+    Amount: 1

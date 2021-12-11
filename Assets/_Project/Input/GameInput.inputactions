@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FastTravel",
+                    "type": "Button",
+                    "id": "df35aaf4-1818-4af4-9f50-3f7eedaf96b5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -365,6 +374,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "ConfirmBuild",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "824c87a9-6cfd-4cd1-961c-bd3fa1066147",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "FastTravel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

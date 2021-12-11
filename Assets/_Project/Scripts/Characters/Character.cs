@@ -31,6 +31,7 @@ namespace Project.Characters
         protected List<Crop> _nearbyCrops = new List<Crop>();
         protected Workstation _nearbyWorkstation = null;
         protected Chest _nearbyChest = null;
+        protected Transform _nearbyCampfire = null;
 
         protected override void Awake()
         {
@@ -96,6 +97,10 @@ namespace Project.Characters
             {
                 _nearbyChest = other.GetComponent<Chest>();
             }
+            else if (_characterData.CampfireLayers.Contains(colliderLayer))
+            {
+                _nearbyCampfire = other.transform;
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -130,6 +135,11 @@ namespace Project.Characters
             {
                 OnMovedAwayFromChest();
                 _nearbyChest = null;
+            }
+            else if (_characterData.CampfireLayers.Contains(colliderLayer)
+                && _nearbyCampfire && other.transform == _nearbyCampfire)
+            {
+                _nearbyCampfire = null;
             }
         }
 

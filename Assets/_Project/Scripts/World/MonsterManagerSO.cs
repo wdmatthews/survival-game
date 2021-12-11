@@ -20,7 +20,7 @@ namespace Project.World
         {
             if (TimeManager.IsDay || _aliveMonsters.Count == LocationManager.Region.MaxMonstersSpawned) return;
             if (Mathf.Approximately(_spawnTimer, 0)) SpawnMonsters();
-            else _spawnTimer = Mathf.Clamp(_spawnTimer - UnityEngine.Time.deltaTime,
+            else _spawnTimer = Mathf.Clamp(_spawnTimer - Time.deltaTime,
                 0, SpawnCooldown);
         }
 

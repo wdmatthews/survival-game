@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="CampfireListElement" style="height: 64px; flex-direction: row;">
+        <ui:Label text="Name" display-tooltip-when-elided="true" name="Name" style="-unity-font-definition: url(&apos;project://database/Assets/Google%20Fonts/Montserrat/Montserrat-Bold%20SDF.asset?fileID=11400000&amp;guid=2146e1aac330d47a08c10b93fe36765e&amp;type=2#Montserrat-Bold SDF&apos;); -unity-text-align: middle-left; font-size: 32px; padding-left: 8px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px; color: rgb(255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>

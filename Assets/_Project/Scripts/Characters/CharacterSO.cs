@@ -20,5 +20,10 @@ namespace Project.Characters
         public LayerMask CropLayers = 0;
         public LayerMask WorkstationLayers = 0;
         public LayerMask ChestLayers = 0;
+        public LayerMask CampfireLayers = 0;
+
+        [Space]
+        [Header("Fast Travel Settings")]
+        public float FastTravelCooldownDuration = 1;
     }
 }
