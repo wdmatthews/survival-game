@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3337284083200673753}
   - component: {fileID: 3337284083200673752}
   - component: {fileID: -5955118037910149536}
-  m_Layer: 18
-  m_Name: Campfire
+  m_Layer: 19
+  m_Name: Tent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f94a95aafa84d8db1a8e34e80944a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 93f3c47f238b0437c88a32be6303ace7, type: 2}
+  _data: {fileID: 11400000, guid: 8d00bc67794f64717a293db263d47bcc, type: 2}
 --- !u!33 &3337284083200673754
 MeshFilter:
   m_ObjectHideFlags: 0

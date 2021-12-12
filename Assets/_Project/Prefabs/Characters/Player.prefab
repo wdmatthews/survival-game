@@ -64,6 +64,9 @@ MonoBehaviour:
   _upgradeWindow: {fileID: 0}
   _cookingWindow: {fileID: 0}
   _chestWindow: {fileID: 0}
+  _campfireRenameWindow: {fileID: 0}
+  _fastTravelWindow: {fileID: 0}
+  _monsterManager: {fileID: 11400000, guid: f31136bef2175490dba4974bfdff01f7, type: 2}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
   m_ObjectHideFlags: 0

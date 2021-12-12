@@ -45,4 +45,7 @@ MonoBehaviour:
   CampfireLayers:
     serializedVersion: 2
     m_Bits: 262144
+  TentLayers:
+    serializedVersion: 2
+    m_Bits: 524288
   FastTravelCooldownDuration: 60

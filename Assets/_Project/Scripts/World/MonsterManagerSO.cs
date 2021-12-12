@@ -64,5 +64,15 @@ namespace Project.World
         {
             _aliveMonsters.Remove(monster);
         }
+
+        public void KillAllMonsters()
+        {
+            for (int i = _aliveMonsters.Count - 1; i >= 0; i--)
+            {
+                Destroy(_aliveMonsters[i].gameObject);
+            }
+
+            _aliveMonsters.Clear();
+        }
     }
 }

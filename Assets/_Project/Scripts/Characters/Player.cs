@@ -6,6 +6,7 @@ using Project.Combat;
 using Project.Growing;
 using Project.Items;
 using Project.UI;
+using Project.World;
 
 namespace Project.Characters
 {
@@ -21,6 +22,8 @@ namespace Project.Characters
         [SerializeField] private ChestWindow _chestWindow = null;
         [SerializeField] private CampfireWindow _campfireRenameWindow = null;
         [SerializeField] private FastTravelWindow _fastTravelWindow = null;
+        [SerializeField] private SpawnPointMessage _spawnPointMessage = null;
+        [SerializeField] private MonsterManagerSO _monsterManager = null;
 
         private bool _isPreviewingStructure = false;
         private StructureSO _previewStructureData = null;
@@ -28,11 +31,13 @@ namespace Project.Characters
         private int _previewAngleIndex = 0;
         private float _fastTravelCooldownTimer = 0;
         private List<CampfireData> _campfires = new();
+        private Vector3 _spawnPoint = new();
 
         protected override void Awake()
         {
             base.Awake();
             _referenceToSelf.Value = this;
+            _spawnPoint = transform.position;
         }
 
         protected void Start()
@@ -121,6 +126,12 @@ namespace Project.Characters
             _heartHUD.OnHealthChanged(_health);
         }
 
+        public override void Die()
+        {
+            base.Die();
+            Respawn();
+        }
+
         public void SetHotbarIndex(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -185,7 +196,7 @@ namespace Project.Characters
                 else if (workstationName == "Anvil") _upgradeWindow.Open();
             }
             else if (_nearbyStructureNode) _buildWindow.Open();
-            // Tents go here
+            else if (_nearbyTent) SetSpawnPoint(_nearbyTent);
             else if (_nearbyCampfire) _campfireRenameWindow.Open(GetCampfire(_nearbyCampfire.name));
         }
 
@@ -375,6 +386,40 @@ namespace Project.Characters
         {
             campfire.Name = newName;
             _campfireRenameWindow.Close();
+        }
+
+        private void SetSpawnPoint(Transform tent)
+        {
+            _spawnPoint = tent.position + tent.right + new Vector3(0, 0.5f, 0);
+            _spawnPointMessage.Open();
+        }
+
+        private void Respawn()
+        {
+            int hotbarItemCount = _inventory.HotbarItems.Count;
+
+            for (int i = 0; i < hotbarItemCount; i++)
+            {
+                _hotbarHUD.SetSlotItem(i, null);
+            }
+
+            _isDead = false;
+            _health = _data.MaxHealth;
+            _heartHUD.OnHealthChanged(_health);
+            _controller.enabled = false;
+            transform.position = _spawnPoint;
+            _controller.enabled = true;
+            _velocity = new Vector3();
+            _inventory.Empty();
+
+            for (int i = _inventory.InitialItems.Count - 1; i >= 0; i--)
+            {
+                ItemStack stack = _inventory.InitialItems[i];
+                _inventory.AddItem(stack.Item, stack.Amount);
+                AddToHotbar(stack.Item, i);
+            }
+
+            _monsterManager.KillAllMonsters();
         }
     }
 }

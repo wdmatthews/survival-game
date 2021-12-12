@@ -8,6 +8,7 @@ namespace Project.Items
     {
         public List<ResourceStack> Resources = new();
         public List<ItemStack> Items = new();
+        public List<ItemStack> InitialItems = new();
         public List<ItemStack> HotbarItems = new();
         public Dictionary<ResourceTypeSO, ResourceStack> ResourcesByResourceData = new();
         public Dictionary<ItemSO, ItemStack> ItemsByItemData = new();
@@ -112,6 +113,20 @@ namespace Project.Items
             }
 
             return _stacks;
+        }
+
+        public void Empty()
+        {
+            Resources.Clear();
+            Items.Clear();
+            ResourcesByResourceData.Clear();
+            ItemsByItemData.Clear();
+            HotbarItemsByItemData.Clear();
+
+            for (int i = HotbarItems.Count - 1; i >= 0; i--)
+            {
+                HotbarItems[i] = null;
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Project.Characters
         public LayerMask WorkstationLayers = 0;
         public LayerMask ChestLayers = 0;
         public LayerMask CampfireLayers = 0;
+        public LayerMask TentLayers = 0;
 
         [Space]
         [Header("Fast Travel Settings")]

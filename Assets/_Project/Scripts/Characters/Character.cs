@@ -32,6 +32,7 @@ namespace Project.Characters
         protected Workstation _nearbyWorkstation = null;
         protected Chest _nearbyChest = null;
         protected Transform _nearbyCampfire = null;
+        protected Transform _nearbyTent = null;
 
         protected override void Awake()
         {
@@ -101,6 +102,10 @@ namespace Project.Characters
             {
                 _nearbyCampfire = other.transform;
             }
+            else if (_characterData.TentLayers.Contains(colliderLayer))
+            {
+                _nearbyTent = other.transform;
+            }
         }
 
         protected void OnTriggerExit(Collider other)
@@ -140,6 +145,11 @@ namespace Project.Characters
                 && _nearbyCampfire && other.transform == _nearbyCampfire)
             {
                 _nearbyCampfire = null;
+            }
+            else if (_characterData.TentLayers.Contains(colliderLayer)
+                && _nearbyTent && other.transform == _nearbyTent)
+            {
+                _nearbyTent = null;
             }
         }
 
