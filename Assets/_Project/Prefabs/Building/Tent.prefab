@@ -56,7 +56,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3337284083200673735}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 8430677550309155740, guid: aeaab63cd0d3b4bf281d2e5e6c9f21e5, type: 3}
 --- !u!23 &3337284083200673753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +77,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f04c3ba3288fc4be1b9d463bf4d8c659, type: 2}
+  - {fileID: -5283888208800200948, guid: aeaab63cd0d3b4bf281d2e5e6c9f21e5, type: 3}
+  - {fileID: 5676507637600901310, guid: aeaab63cd0d3b4bf281d2e5e6c9f21e5, type: 3}
+  - {fileID: -8067726398312463513, guid: aeaab63cd0d3b4bf281d2e5e6c9f21e5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,8 +112,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5476, y: 0.5611308, z: 0.66639996}
+  m_Center: {x: 0, y: 0.2805654, z: 0.015000001}
 --- !u!208 &-5955118037910149536
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -122,9 +124,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.2738, y: 0.2805655, z: 0.3332}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.2805654, z: 0.015000001}
   m_TimeToStationary: 0.5

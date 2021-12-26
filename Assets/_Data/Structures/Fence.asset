@@ -15,11 +15,11 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
   Description: A destructible fence made of wood
   CanBeInHotbar: 0
+  CanBeInChest: 0
   CooldownDuration: 0
-  IsDestroyable: 1
   MaxHealth: 1
   Prefab: {fileID: 3337284083200673756, guid: f1585493234e34f598d728123fed5adf, type: 3}
-  PreviewPrefab: {fileID: 5600827011983987772, guid: 8de0a9cff6c8a4a9587e96c83d0b7e7b, type: 3}
+  PreviewPrefab: {fileID: 5600827011983987772, guid: d5fe5ec88f12040eaa9d3d6832677345, type: 3}
   Ingredients:
   - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
     Amount: 2

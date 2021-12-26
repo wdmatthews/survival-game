@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3337284083200673756}
   - component: {fileID: 3337284083200673754}
   - component: {fileID: 3337284083200673753}
-  - component: {fileID: 3337284083200673752}
+  - component: {fileID: 9154126597002485010}
   - component: {fileID: 3128246329813553130}
   m_Layer: 16
   m_Name: Fence
@@ -56,7 +56,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3337284083200673735}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4596239184023814631, guid: 4939cc19a11034d82ae7e2b46050dd9b, type: 3}
 --- !u!23 &3337284083200673753
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +77,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f04c3ba3288fc4be1b9d463bf4d8c659, type: 2}
+  - {fileID: -1444460858095362738, guid: 4939cc19a11034d82ae7e2b46050dd9b, type: 3}
+  - {fileID: 5888754289584996200, guid: 4939cc19a11034d82ae7e2b46050dd9b, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +100,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3337284083200673752
+--- !u!65 &9154126597002485010
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 1.0349334, z: 0.10603001}
+  m_Center: {x: 0, y: 0.5174667, z: 0.5530151}
 --- !u!208 &3128246329813553130
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -122,9 +123,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 1.5, y: 0.5174667, z: 0.053015}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5174667, z: 0.5530151}
   m_TimeToStationary: 0.5

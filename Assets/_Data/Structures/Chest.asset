@@ -19,7 +19,7 @@ MonoBehaviour:
   CooldownDuration: 0
   MaxHealth: 0
   Prefab: {fileID: 9191846374399394073, guid: 5a157ef09ff3f4552b533ce5d223f9fb, type: 3}
-  PreviewPrefab: {fileID: 5600827011983987772, guid: 8de0a9cff6c8a4a9587e96c83d0b7e7b, type: 3}
+  PreviewPrefab: {fileID: 5600827011983987772, guid: 7cdff3df63fcf496ba9eee2132ce6981, type: 3}
   Ingredients:
   - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
     Amount: 2
