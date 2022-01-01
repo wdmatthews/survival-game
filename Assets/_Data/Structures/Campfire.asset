@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59b534f5c934b70b82cc2056301749, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: 5e76203d5242f4483b0bdf95e5f30854, type: 3}
   Description: A campfire to travel quickly to
   CanBeInHotbar: 0
   CanBeInChest: 0

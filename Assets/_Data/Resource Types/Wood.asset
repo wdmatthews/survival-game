@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4e9457bb6484627a6c87adb042cb93, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: 1cafe3b92468c46cca28e6fdc360f8af, type: 3}
   Description: A chunk from a tree
+  CanBeInHotbar: 0
+  CanBeInChest: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59b534f5c934b70b82cc2056301749, type: 3}
   m_Name: Tent
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: 6b5e91e8609ed4b4d9e46940c8354930, type: 3}
   Description: A small tent for respawning
   CanBeInHotbar: 0
   CanBeInChest: 0

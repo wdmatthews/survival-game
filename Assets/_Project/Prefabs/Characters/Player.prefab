@@ -66,6 +66,7 @@ MonoBehaviour:
   _chestWindow: {fileID: 0}
   _campfireRenameWindow: {fileID: 0}
   _fastTravelWindow: {fileID: 0}
+  _spawnPointMessage: {fileID: 0}
   _monsterManager: {fileID: 11400000, guid: f31136bef2175490dba4974bfdff01f7, type: 2}
 --- !u!114 &1995746023397850511
 MonoBehaviour:
@@ -400,8 +401,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 1, y: 0, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 1, y: -0.5, z: 0}
 --- !u!1 &1995746023621547231
 GameObject:
   m_ObjectHideFlags: 0
