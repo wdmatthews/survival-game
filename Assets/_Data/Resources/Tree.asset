@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be5b3e2360d045ada94fc499d535d15, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 794311830343522911, guid: baf8c59b2b4944751a4b749f4ff635fd, type: 3}
+  Prefab: {fileID: 8723176356132437409, guid: e7c84b804cf874944b52b5b11ff2a6b7, type: 3}
   Type: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
   MaxHealth: 10
   Amount: 1

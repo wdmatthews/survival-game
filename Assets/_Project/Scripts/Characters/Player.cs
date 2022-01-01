@@ -52,28 +52,16 @@ namespace Project.Characters
             _chestWindow.TakeFromChest = TakeFromChest;
             _campfireRenameWindow.RenameCampfire = RenameCampfire;
             _fastTravelWindow.FastTravel = FastTravel;
-            // TESTING //
             _inventory.HotbarItems.Clear();
+            _inventory.Empty();
 
-            foreach (var stack in _inventory.Resources)
-            {
-                _inventory.ResourcesByResourceData.Add(stack.Resource, stack);
-            }
-
-            foreach (var stack in _inventory.Items)
-            {
-                _inventory.ItemsByItemData.Add(stack.Item, stack);
-                AddToHotbar(stack.Item);
-            }
-
-            SetHotbarIndex(0);
-
-            for (int i = _inventory.HotbarItems.Count; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 _inventory.HotbarItems.Add(null);
                 _hotbarHUD.AddSlot();
             }
-            // TESTING //
+
+            LoadInitialItems();
         }
 
         protected override void Update()
@@ -396,13 +384,6 @@ namespace Project.Characters
 
         private void Respawn()
         {
-            int hotbarItemCount = _inventory.HotbarItems.Count;
-
-            for (int i = 0; i < hotbarItemCount; i++)
-            {
-                _hotbarHUD.SetSlotItem(i, null);
-            }
-
             _isDead = false;
             _health = _data.MaxHealth;
             _heartHUD.OnHealthChanged(_health);
@@ -410,16 +391,30 @@ namespace Project.Characters
             transform.position = _spawnPoint;
             _controller.enabled = true;
             _velocity = new Vector3();
-            _inventory.Empty();
+            LoadInitialItems();
+            _monsterManager.KillAllMonsters();
+        }
 
-            for (int i = _inventory.InitialItems.Count - 1; i >= 0; i--)
+        private void LoadInitialItems()
+        {
+            int hotbarItemCount = _inventory.HotbarItems.Count;
+
+            for (int i = 0; i < hotbarItemCount; i++)
+            {
+                _hotbarHUD.SetSlotItem(i, null);
+            }
+
+            _inventory.Empty();
+            int initialItemCount = _inventory.InitialItems.Count;
+
+            for (int i = 0; i < initialItemCount; i++)
             {
                 ItemStack stack = _inventory.InitialItems[i];
                 _inventory.AddItem(stack.Item, stack.Amount);
                 AddToHotbar(stack.Item, i);
             }
 
-            _monsterManager.KillAllMonsters();
+            SetHotbarIndex(0);
         }
     }
 }

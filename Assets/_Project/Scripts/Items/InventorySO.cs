@@ -6,9 +6,9 @@ namespace Project.Items
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Project/Items/Inventory")]
     public class InventorySO : ScriptableObject
     {
+        public List<ItemStack> InitialItems = new();
         public List<ResourceStack> Resources = new();
         public List<ItemStack> Items = new();
-        public List<ItemStack> InitialItems = new();
         public List<ItemStack> HotbarItems = new();
         public Dictionary<ResourceTypeSO, ResourceStack> ResourcesByResourceData = new();
         public Dictionary<ItemSO, ItemStack> ItemsByItemData = new();
