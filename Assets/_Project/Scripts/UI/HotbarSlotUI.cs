@@ -25,6 +25,7 @@ namespace Project.UI
             if (icon)
             {
                 _icon.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+                _icon.style.backgroundImage = new StyleBackground(icon);
                 SetItemAmount(amount);
             }
             else

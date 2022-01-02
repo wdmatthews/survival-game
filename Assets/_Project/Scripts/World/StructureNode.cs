@@ -24,7 +24,8 @@ namespace Project.World
 
         public Transform StartPreview(StructureSO structure)
         {
-            _previewStructure = Instantiate(structure.PreviewPrefab, transform);
+            _previewStructure = Instantiate(structure.PreviewPrefab);
+            _previewStructure.transform.position = transform.position;
             _previewStructureData = structure;
             _renderer.enabled = false;
             return _previewStructure;

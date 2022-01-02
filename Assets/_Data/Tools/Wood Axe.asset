@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
   m_Name: Wood Axe
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: eb79484b3886d4f609b051f282a562e1, type: 3}
   Description: An axe with a wood blade
   CanBeInHotbar: 0
+  CanBeInChest: 0
   CooldownDuration: 1
+  PhysicalItem: {fileID: 2534790165276146459, guid: 78df38aba3ca945f5b4ab8a610b180ad, type: 3}
   Level: 1
   ItemAtNextLevel: {fileID: 11400000, guid: 114b4e22abfd94848a4c7e70f767925e, type: 2}
   IngredientsNeededToUpgrade:

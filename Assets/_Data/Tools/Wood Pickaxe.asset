@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e4a5d38d5be4518aa8396991f0dc3f, type: 3}
   m_Name: Wood Pickaxe
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: 574fef39e911f4880bc92fc1064271a1, type: 3}
   Description: A pickace with a wood blade
+  CanBeInHotbar: 0
+  CanBeInChest: 0
   CooldownDuration: 0
+  PhysicalItem: {fileID: 7659071787346935043, guid: 216bc04284309499f9abd8abac3b25d1, type: 3}
   Level: 1
-  ItemAtNextLevel: {fileID: 0}
-  IngredientsNeededToUpgrade: []
+  ItemAtNextLevel: {fileID: 11400000, guid: 4fcce9737e31b4c7db7290e6e73fd9bf, type: 2}
+  IngredientsNeededToUpgrade:
+  - Ingredient: {fileID: 11400000}
+    Amount: 1
+  - Ingredient: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
+    Amount: 2
   Type: {fileID: 11400000, guid: 71d60ee73c98541de8f685011b3d53bc, type: 2}
   Damage: 2

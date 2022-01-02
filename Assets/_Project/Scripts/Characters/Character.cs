@@ -15,6 +15,7 @@ namespace Project.Characters
         [Header("Object References")]
         [SerializeField] protected CharacterController _controller = null;
         [SerializeField] protected Transform _groundCheckPoint = null;
+        [SerializeField] protected Transform _hand = null;
         [SerializeField] protected InventorySO _inventory = null;
 
         protected CharacterSO _characterData = null;
@@ -24,6 +25,7 @@ namespace Project.Characters
         protected Resource _nearbyResource = null;
         protected List<MonoBehaviour> _nearbyMonsters = new List<MonoBehaviour>();
         protected ItemSO _itemInHand = null;
+        protected Transform _objectInHand = null;
         protected int _hotbarIndex = 0;
         protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
@@ -194,8 +196,20 @@ namespace Project.Characters
 
         protected virtual void SetHotbarIndex(int index)
         {
+            int oldIndex = _hotbarIndex;
             _hotbarIndex = index;
             _itemInHand = index >= 0 ? _inventory.HotbarItems[_hotbarIndex]?.Item : null;
+            if (!_hand) return;
+
+            if (oldIndex != _hotbarIndex && _objectInHand)
+            {
+                Destroy(_objectInHand.gameObject);
+            }
+
+            if (_itemInHand && _itemInHand.PhysicalItem)
+            {
+                _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
+            }
         }
 
         protected virtual void CycleToNextHotbarItem()

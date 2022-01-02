@@ -285,11 +285,14 @@ namespace Project.Characters
                 }
             }
 
+            if (_objectInHand) Destroy(_objectInHand.gameObject);
             int itemHotbarIndex = _inventory.GetHotbarItemIndex(itemToUpgrade);
             RemoveFromHotbar(itemHotbarIndex);
             _inventory.RemoveItem(itemToUpgrade, 1);
             _inventory.AddItem(itemToUpgrade.ItemAtNextLevel, 1);
             AddToHotbar(itemToUpgrade.ItemAtNextLevel, itemHotbarIndex);
+            _itemInHand = itemToUpgrade.ItemAtNextLevel;
+            _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
             _upgradeWindow.Close();
         }
 
@@ -378,7 +381,7 @@ namespace Project.Characters
 
         private void SetSpawnPoint(Transform tent)
         {
-            _spawnPoint = tent.position + tent.right + new Vector3(0, 0.5f, 0);
+            _spawnPoint = tent.position + tent.right;
             _spawnPointMessage.Open();
         }
 
