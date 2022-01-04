@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f3f0f90298e47b390364fdbf1fc503, type: 3}
+  m_Name: Ghost
+  m_EditorClassIdentifier: 
+  MaxHealth: 5
+  TimeBeforeHealthRegeneration: 0
+  HealthRegenerationAmount: 0
+  HealthRegenerationCooldown: 0
+  Damage: 0.5
+  AttackCooldown: 1
+  StopDistanceFromTarget: 1
+  DistanceToTargetFences: 3
+  FenceLineDetectionDistance: 2
+  FenceLineDetectionOffset: -0.5
+  CharacterLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  FenceLayers:
+    serializedVersion: 2
+    m_Bits: 65536
+  Prefab: {fileID: 9049214898104303850, guid: f3ffb108d5acd42349acd89747b3c16a, type: 3}
+  ReferenceToPlayer: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}

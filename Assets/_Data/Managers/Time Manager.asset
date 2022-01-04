@@ -15,4 +15,3 @@ MonoBehaviour:
   MinutesPerDay: 1
   MinutesPerNight: 1
   LocationManager: {fileID: 11400000, guid: d48c57ffd86a94918b1e98c2dcbda539, type: 2}
-  MonsterManager: {fileID: 11400000, guid: f31136bef2175490dba4974bfdff01f7, type: 2}

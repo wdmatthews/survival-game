@@ -11,6 +11,7 @@ namespace Project.Combat
     public class Monster : Damageable
     {
         [SerializeField] protected NavMeshAgent _navigationAgent = null;
+        [SerializeField] protected Animator _animator = null;
 
         protected MonsterSO _monsterData = null;
         protected Transform _playerTransform = null;
@@ -85,6 +86,10 @@ namespace Project.Combat
                     0, _monsterData.AttackCooldown);
             }
             else if (playerCount > 0 || fenceCount > 0) StartAttack();
+
+            _animator.SetBool("Is Moving", !_navigationAgent.isStopped
+                && (!Mathf.Approximately(_navigationAgent.velocity.x, 0)
+                    || !Mathf.Approximately(_navigationAgent.velocity.z, 0)));
         }
 
         protected void OnTriggerEnter(Collider other)
@@ -128,8 +133,9 @@ namespace Project.Combat
 
         public void StartAttack()
         {
-            DamageFences();
-            DamageCharacters();
+            if (_animator.GetCurrentAnimatorStateInfo(1).IsName("Use")) return;
+            _animator.ResetTrigger("Use");
+            _animator.SetTrigger("Use");
         }
 
         public void DamageFences()
@@ -148,8 +154,6 @@ namespace Project.Combat
                 Damageable character = (Damageable)_nearbyCharacters[i];
                 character.TakeDamage(_monsterData.Damage);
             }
-
-            FinishAttack();
         }
 
         public void FinishAttack()

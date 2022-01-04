@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1995746023397850507}
   - component: {fileID: 8009196301880764236}
   - component: {fileID: 3862566658476140457}
+  - component: {fileID: 5078837378352859569}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -119,6 +120,7 @@ MonoBehaviour:
   _groundCheckPoint: {fileID: 1995746023621547230}
   _hand: {fileID: 3872471813146753848}
   _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
+  _animator: {fileID: 5078837378352859569}
   _referenceToSelf: {fileID: 11400000, guid: 68ed6cfa6ea6444d48cf02bef50ba014, type: 2}
   _heartHUD: {fileID: 0}
   _hotbarHUD: {fileID: 0}
@@ -416,6 +418,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 1, y: 0.5, z: 0}
+--- !u!95 &5078837378352859569
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995746023397850504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ee61ab245aeab4044bf9427a0c709ee5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1995746023621547231
 GameObject:
   m_ObjectHideFlags: 0

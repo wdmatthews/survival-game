@@ -17,6 +17,7 @@ namespace Project.Characters
         [SerializeField] protected Transform _groundCheckPoint = null;
         [SerializeField] protected Transform _hand = null;
         [SerializeField] protected InventorySO _inventory = null;
+        [SerializeField] protected Animator _animator = null;
 
         protected CharacterSO _characterData = null;
         protected Vector3 _velocity = new Vector3();
@@ -27,7 +28,6 @@ namespace Project.Characters
         protected ItemSO _itemInHand = null;
         protected Transform _objectInHand = null;
         protected int _hotbarIndex = 0;
-        protected float _itemUseCooldownTimer = 0;
         protected bool _shouldUse = false;
         protected StructureNode _nearbyStructureNode = null;
         protected List<Crop> _nearbyCrops = new List<Crop>();
@@ -46,12 +46,9 @@ namespace Project.Characters
         {
             base.Update();
 
-            if (_shouldUse && _itemInHand && _itemInHand.CooldownDuration > Mathf.Epsilon)
-            {
-                if (Mathf.Approximately(_itemUseCooldownTimer, 0)) Interact();
-                else _itemUseCooldownTimer = Mathf.Clamp(_itemUseCooldownTimer - Time.deltaTime,
-                    0, _itemInHand.CooldownDuration);
-            }
+            _animator.SetBool("Is Moving", !Mathf.Approximately(_velocity.x, 0) || !Mathf.Approximately(_velocity.z, 0));
+
+            if (_shouldUse && _itemInHand) Use();
         }
 
         protected void FixedUpdate()
@@ -173,6 +170,8 @@ namespace Project.Characters
 
         protected virtual void Use()
         {
+            if (_animator.GetCurrentAnimatorStateInfo(1).IsName("Use")) return;
+
             _shouldUse = true;
 
             foreach (var crop in _nearbyCrops)
@@ -181,12 +180,19 @@ namespace Project.Characters
             }
 
             if (!_itemInHand) return;
-            _itemUseCooldownTimer = _itemInHand.CooldownDuration;
+            _animator.ResetTrigger("Use");
+            _animator.SetTrigger("Use");
             _itemInHand.Use();
             _itemInHand.Use(this);
             _itemInHand.Use(_nearbyResource, _inventory);
-            _itemInHand.Use(_nearbyMonsters);
+            
             if (_itemInHand is FoodSO) _inventory.RemoveItem(_itemInHand, 1);
+        }
+
+        public void UseInAnimation()
+        {
+            if (!_itemInHand) return;
+            _itemInHand.Use(_nearbyMonsters);
         }
 
         protected virtual void Interact()
