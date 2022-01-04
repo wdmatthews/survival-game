@@ -19,6 +19,7 @@ namespace Project.Combat
             for (int i = monoBehaviours.Count - 1; i >= 0; i--)
             {
                 Damageable damageable = (Damageable)monoBehaviours[i];
+                if (!damageable || !damageable.gameObject) continue;
                 damageable.TakeDamage(Damage);
             }
         }

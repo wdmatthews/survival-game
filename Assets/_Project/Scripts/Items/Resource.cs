@@ -32,7 +32,7 @@ namespace Project.Items
         {
             _isBroken = true;
             inventory.AddResource(_data.Type, _data.Amount);
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

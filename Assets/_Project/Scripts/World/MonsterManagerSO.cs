@@ -18,6 +18,7 @@ namespace Project.World
 
         public void OnUpdate()
         {
+            if (TimeManager.IsDay && _aliveMonsters.Count > 0) KillAllMonsters();
             if (TimeManager.IsDay || _aliveMonsters.Count == LocationManager.Region.MaxMonstersSpawned) return;
             if (Mathf.Approximately(_spawnTimer, 0)) SpawnMonsters();
             else _spawnTimer = Mathf.Clamp(_spawnTimer - Time.deltaTime,

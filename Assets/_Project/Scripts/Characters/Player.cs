@@ -394,6 +394,13 @@ namespace Project.Characters
             transform.position = _spawnPoint;
             _controller.enabled = true;
             _velocity = new Vector3();
+
+            if (_objectInHand)
+            {
+                Destroy(_objectInHand.gameObject);
+                _objectInHand = null;
+            }
+
             LoadInitialItems();
             _monsterManager.KillAllMonsters();
         }
