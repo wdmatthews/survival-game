@@ -1,0 +1,11 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl greyDark
+Kd 0.5294118 0.6 0.6666667
+
+newmtl glass
+Kd 0.945098 0.9490196 0.9647059
+
+newmtl _defaultMat
+Kd 1 1 1
+

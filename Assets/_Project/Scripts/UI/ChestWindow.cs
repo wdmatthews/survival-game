@@ -21,6 +21,7 @@ namespace Project.UI
         private bool _inventoryItemIsSelected = false;
         public System.Action<CraftingIngredientSO, int> AddToChest { set => _transferPanel.AddToChest = value; }
         public System.Action<CraftingIngredientSO, int> TakeFromChest { set => _transferPanel.TakeFromChest = value; }
+        public System.Action OnClose { get; set; }
 
         private void Awake()
         {
@@ -48,6 +49,7 @@ namespace Project.UI
         public void Close()
         {
             _uiDocument.rootVisualElement.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
+            OnClose?.Invoke();
         }
 
         private void SelectListElement(CraftingIngredientStack stack,

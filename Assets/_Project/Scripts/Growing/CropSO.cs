@@ -8,5 +8,6 @@ namespace Project.Growing
     {
         public int GrowthTime = 1;
         public FoodSO Food = null;
+        public MeshFilter[] Stages = { };
     }
 }

@@ -32,6 +32,7 @@ namespace Project.Characters
         private float _fastTravelCooldownTimer = 0;
         private List<CampfireData> _campfires = new();
         private Vector3 _spawnPoint = new();
+        private bool _isInWindow = false;
 
         protected override void Awake()
         {
@@ -45,13 +46,20 @@ namespace Project.Characters
             _heartHUD.CreateHearts(Mathf.RoundToInt(_health));
             _inventoryWindow.AddItemToHotbar = AddToHotbar;
             _inventoryWindow.RemoveItemFromHotbar = RemoveFromHotbar;
+            _inventoryWindow.OnClose = OnCloseWindow;
             _buildWindow.BuildStructure = BuildStructure;
+            _buildWindow.OnClose = OnCloseWindow;
             _upgradeWindow.UpgradeItem = UpgradeItem;
+            _upgradeWindow.OnClose = OnCloseWindow;
             _cookingWindow.CookFood = CookFood;
+            _cookingWindow.OnClose = OnCloseWindow;
             _chestWindow.AddToChest = AddToChest;
             _chestWindow.TakeFromChest = TakeFromChest;
+            _chestWindow.OnClose = OnCloseWindow;
             _campfireRenameWindow.RenameCampfire = RenameCampfire;
+            _campfireRenameWindow.OnClose = OnCloseWindow;
             _fastTravelWindow.FastTravel = FastTravel;
+            _fastTravelWindow.OnClose = OnCloseWindow;
             _inventory.HotbarItems.Clear();
             _inventory.Empty();
 
@@ -72,27 +80,32 @@ namespace Project.Characters
 
         public void Move(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             Move(context.ReadValue<Vector2>());
         }
 
         public void Jump(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             _shouldJump = context.performed;
         }
 
         public void Use(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (context.performed) Use();
             else if (context.canceled) _shouldUse = false;
         }
 
         public void Interact(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (context.performed) Interact();
         }
 
         protected override void Use()
         {
+            if (_isInWindow) return;
             base.Use();
 
             if (_itemInHand && _itemInHand is FoodSO)
@@ -122,6 +135,7 @@ namespace Project.Characters
 
         public void SetHotbarIndex(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (context.performed)
             {
                 SetHotbarIndex(int.Parse(context.control.path[10..]) - 1);
@@ -130,16 +144,19 @@ namespace Project.Characters
 
         public void CycleToNextHotbarItem(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (context.performed) CycleToNextHotbarItem();
         }
 
         public void CycleToPreviousHotbarItem(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (context.performed) CycleToPreviousHotbarItem();
         }
 
         public void ToggleInventoryWindow(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (!context.performed) return;
             if (!_inventoryWindow.IsOpen) _inventoryWindow.Open();
             else _inventoryWindow.Close();
@@ -174,7 +191,9 @@ namespace Project.Characters
 
         protected override void Interact()
         {
+            if (_isInWindow) return;
             base.Interact();
+            _isInWindow = true;
 
             if (_nearbyChest) _chestWindow.Open(_nearbyChest);
             else if (_nearbyWorkstation)
@@ -186,12 +205,14 @@ namespace Project.Characters
             else if (_nearbyStructureNode) _buildWindow.Open();
             else if (_nearbyTent) SetSpawnPoint(_nearbyTent);
             else if (_nearbyCampfire) _campfireRenameWindow.Open(GetCampfire(_nearbyCampfire.name));
+            else _isInWindow = false;
         }
 
         protected override void OnMovedAwayFromStructureNode()
         {
             base.OnMovedAwayFromStructureNode();
             _buildWindow.Close();
+            _isInWindow = false;
 
             if (_isPreviewingStructure)
             {
@@ -206,12 +227,19 @@ namespace Project.Characters
             string workstationName = _nearbyWorkstation.Name;
             if (workstationName == "Cooking Spit") _cookingWindow.Close();
             else if (workstationName == "Anvil") _upgradeWindow.Close();
+            _isInWindow = false;
         }
 
         protected override void OnMovedAwayFromChest()
         {
             base.OnMovedAwayFromChest();
             _chestWindow.Close();
+            _isInWindow = false;
+        }
+
+        private void OnCloseWindow()
+        {
+            _isInWindow = false;
         }
 
         public void NextAngleIndex(InputAction.CallbackContext context)
@@ -233,6 +261,7 @@ namespace Project.Characters
         private void BuildStructure(StructureSO structure)
         {
             _buildWindow.Close();
+            _isInWindow = false;
             _isPreviewingStructure = true;
             _previewAngleIndex = 0;
             _previewStructureData = structure;
@@ -294,6 +323,7 @@ namespace Project.Characters
             _itemInHand = itemToUpgrade.ItemAtNextLevel;
             _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
             _upgradeWindow.Close();
+            _isInWindow = false;
         }
 
         private void RemoveItemFromInventory(ItemSO item, int amount)
@@ -325,6 +355,7 @@ namespace Project.Characters
 
             _inventory.AddItem(itemToCook, 1);
             _cookingWindow.Close();
+            _isInWindow = false;
         }
         
         private void AddToChest(CraftingIngredientSO ingredient, int amount)
@@ -349,6 +380,7 @@ namespace Project.Characters
 
         public void FastTravel(InputAction.CallbackContext context)
         {
+            if (_isInWindow) return;
             if (!context.performed || !Mathf.Approximately(_fastTravelCooldownTimer, 0)) return;
             _fastTravelWindow.Open(_campfires);
         }
@@ -361,6 +393,7 @@ namespace Project.Characters
             _velocity = new Vector3();
             _fastTravelCooldownTimer = _characterData.FastTravelCooldownDuration;
             _fastTravelWindow.Close();
+            _isInWindow = false;
         }
 
         private CampfireData GetCampfire(string id)
@@ -377,6 +410,7 @@ namespace Project.Characters
         {
             campfire.Name = newName;
             _campfireRenameWindow.Close();
+            _isInWindow = false;
         }
 
         private void SetSpawnPoint(Transform tent)

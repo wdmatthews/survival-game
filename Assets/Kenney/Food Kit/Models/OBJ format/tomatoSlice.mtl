@@ -1,0 +1,8 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl red
+Kd 0.9098039 0.3333333 0.3254902
+
+newmtl redLight
+Kd 0.9686275 0.4941176 0.4078431
+

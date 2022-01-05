@@ -17,6 +17,7 @@ namespace Project.UI
         private Button _cancelButton = null;
         private Button _travelButton = null;
         public System.Action<CampfireData> FastTravel { get; set; }
+        public System.Action OnClose { get; set; }
 
         private void Awake()
         {
@@ -42,6 +43,7 @@ namespace Project.UI
         public void Close()
         {
             _uiDocument.rootVisualElement.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
+            OnClose?.Invoke();
         }
 
         private void Travel()

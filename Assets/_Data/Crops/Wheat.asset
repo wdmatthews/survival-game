@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcd29c8f1ad948dc8caf622164e66c8, type: 3}
   m_Name: Wheat
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 338df08cc8b5a4956af9f0c71c516ff1, type: 3}
+  Icon: {fileID: 21300000, guid: 0e1d1ef48b46a4cde89d7d600dc7e787, type: 3}
   Description: Seeds that can eventually grow into wheat
   CanBeInHotbar: 0
-  CooldownDuration: 0
-  Prefab: {fileID: 7823464495782504579, guid: 978495cf9e2124c22ae230f0193fd8a3, type: 3}
-  PreviewPrefab: {fileID: 5600827011983987772, guid: 8de0a9cff6c8a4a9587e96c83d0b7e7b, type: 3}
-  Ingredients:
-  - Ingredient: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
-    Amount: 1
-  GrowthTime: 2
+  CanBeInChest: 0
+  PhysicalItem: {fileID: 0}
+  MaxHealth: 1
+  Prefab: {fileID: 7672049536698353846, guid: 6cf22054adf6b451e9a08242eeb7c289, type: 3}
+  PreviewPrefab: {fileID: 6775802038563368227, guid: 967ff5c7e13c84374ab1aee2098aa9a9, type: 3}
+  Ingredients: []
+  GrowthTime: 1
   Food: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
+  Stages:
+  - {fileID: -7372469989800846595, guid: 20a217f531be540f0abe3b1caff2d741, type: 3}
+  - {fileID: 1704562073454067879, guid: 3cfe6ae23159c4cb0bba7f132c528533, type: 3}

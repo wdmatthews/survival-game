@@ -1,0 +1,8 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl purpleLight
+Kd 0.9098039 0.6039216 0.8156863
+
+newmtl brownLight
+Kd 0.9764706 0.772549 0.5490196
+

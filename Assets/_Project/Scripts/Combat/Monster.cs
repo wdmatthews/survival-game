@@ -22,22 +22,27 @@ namespace Project.Combat
         protected float _attackCooldownTimer = 0;
         protected System.Action<Monster> _onDie = null;
         protected bool _isTargetingFence = false;
+        protected bool _isRising = false;
 
         protected override void Awake()
         {
             base.Awake();
             _monsterData = (MonsterSO)_data;
             _attackCooldownTimer = _monsterData.AttackCooldown;
+            _isRising = true;
         }
 
         protected void Start()
         {
             _playerTransform = _monsterData.ReferenceToPlayer.Value.transform;
             _moveTarget = _playerTransform;
+            _animator.ResetTrigger("Rise");
+            _animator.SetTrigger("Rise");
         }
 
         protected override void Update()
         {
+            if (_isRising) return;
             base.Update();
 
             int playerCount = _nearbyCharacters.Count;
@@ -121,6 +126,11 @@ namespace Project.Combat
             {
                 _nearbyFences.Remove(other.GetComponent<Structure>());
             }
+        }
+
+        public void StopRising()
+        {
+            _isRising = false;
         }
 
         public void Spawn(Vector3 position, int angleIndex, System.Action<Monster> onDie)

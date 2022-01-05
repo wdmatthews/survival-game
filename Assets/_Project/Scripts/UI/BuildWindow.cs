@@ -21,6 +21,7 @@ namespace Project.UI
         private BuildWindowBuildPanel _buildPanel = null;
         public bool IsOpen { get; private set; } = false;
         public System.Action<StructureSO> BuildStructure { set => _buildPanel.OnBuildStructure = value; }
+        public System.Action OnClose { get; set; }
 
         private void Awake()
         {
@@ -46,6 +47,7 @@ namespace Project.UI
         {
             _uiDocument.rootVisualElement.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
             IsOpen = false;
+            OnClose?.Invoke();
         }
 
         private void SelectListElement(StructureSO structure)

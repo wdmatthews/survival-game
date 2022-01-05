@@ -8,6 +8,9 @@ namespace Project.Growing
     [DisallowMultipleComponent]
     public class Crop : Structure
     {
+        [SerializeField] protected MeshFilter[] _meshFilters;
+        [SerializeField] protected MeshRenderer[] _renderers;
+
         protected CropSO _cropData = null;
         protected int _growTimer = 0;
         protected bool _isReadyToHarvest = false;
@@ -20,9 +23,18 @@ namespace Project.Growing
 
         public void Grow()
         {
-            _growTimer--;
-            if (_growTimer > 0) return;
-            _isReadyToHarvest = true;
+            if (_isReadyToHarvest) return;
+
+            if (_growTimer > 0)
+            {
+                _growTimer--;
+                UpdateModels();
+            }
+
+            if (_growTimer == 0)
+            {
+                _isReadyToHarvest = true;
+            }
         }
 
         public void Harvest(InventorySO inventory)
@@ -31,6 +43,20 @@ namespace Project.Growing
             _isReadyToHarvest = false;
             _growTimer = _cropData.GrowthTime;
             inventory.AddItem(_cropData.Food, 1);
+            UpdateModels();
+        }
+
+        private void UpdateModels()
+        {
+            MeshFilter meshFilter = _cropData.Stages[_cropData.GrowthTime - _growTimer];
+            Mesh mesh = meshFilter.sharedMesh;
+            Material[] materials = meshFilter.GetComponent<MeshRenderer>().sharedMaterials;
+
+            for (int i = _meshFilters.Length - 1; i >= 0; i--)
+            {
+                _meshFilters[i].mesh = mesh;
+                _renderers[i].materials = materials;
+            }
         }
     }
 }

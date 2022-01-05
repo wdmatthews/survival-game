@@ -18,6 +18,7 @@ namespace Project.UI
         public System.Action<ItemSO, int> AddItemToHotbar { get; set; } = null;
         public System.Action<int> RemoveItemFromHotbar { get; set; } = null;
         public bool IsOpen { get; private set; } = false;
+        public System.Action OnClose { get; set; }
 
         private void Awake()
         {
@@ -46,6 +47,7 @@ namespace Project.UI
         {
             _uiDocument.rootVisualElement.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
             IsOpen = false;
+            OnClose?.Invoke();
         }
 
         private void SelectListElement(CraftingIngredientSO craftingIngredient,
