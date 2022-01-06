@@ -42,7 +42,7 @@ namespace Project.Growing
             if (!_isReadyToHarvest) return;
             _isReadyToHarvest = false;
             _growTimer = _cropData.GrowthTime;
-            inventory.AddItem(_cropData.Food, 1);
+            inventory.AddItem(_cropData.Food, _cropData.HarvestAmount);
             UpdateModels();
         }
 

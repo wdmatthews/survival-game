@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b8ad80ed3d4812a8378fe9d94ac5b, type: 3}
+  m_Name: Corn
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3ad4196b2eaad4c19a2d95f9fad8b444, type: 3}
+  Description: A cob of corn
+  CanBeInHotbar: 1
+  CanBeInChest: 0
+  PhysicalItem: {fileID: 0}
+  HealthRegainedFromEating: 1
+  FoodNeededToCook: []

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcd29c8f1ad948dc8caf622164e66c8, type: 3}
+  m_Name: Corn
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: 3ad4196b2eaad4c19a2d95f9fad8b444, type: 3}
+  Description: Seeds that can eventually grow into corn
+  CanBeInHotbar: 0
+  CanBeInChest: 0
+  PhysicalItem: {fileID: 0}
+  MaxHealth: 1
+  Prefab: {fileID: 7672049536698353846, guid: 41de529ca09864afea7893ab4df6a16a, type: 3}
+  PreviewPrefab: {fileID: 6775802038563368227, guid: 967ff5c7e13c84374ab1aee2098aa9a9, type: 3}
+  Ingredients: []
+  GrowthTime: 3
+  HarvestAmount: 9
+  Food: {fileID: 11400000, guid: 6add2e022d2e04df596fc7ff52b24746, type: 2}
+  Stages:
+  - {fileID: 8286265472058684025, guid: 5bd92ceed76c24dad95b008d1bcd1ef5, type: 3}
+  - {fileID: 2384921075937316600, guid: 25b6eecfd9db6420a9c8aaf7e8e5cb18, type: 3}
+  - {fileID: -7497062305566185772, guid: 0c5f33967969d439db9b5890f81f64c9, type: 3}
+  - {fileID: -6400281290468069383, guid: 892864c20169c416e92a5631ac05b2e3, type: 3}
