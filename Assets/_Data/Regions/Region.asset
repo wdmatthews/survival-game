@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beae7d2acaa37401cb338bb33fd0e569, type: 3}
   m_Name: Region
   m_EditorClassIdentifier: 
-  MaxMonstersPerSpawn: 2
-  MaxMonstersSpawned: 5
+  MaxMonstersPerSpawn: 4
+  MaxMonstersSpawned: 20

@@ -16,9 +16,8 @@ MonoBehaviour:
   Description: A sword with a wood blade
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 1
   PhysicalItem: {fileID: 8189501989252756614, guid: d1862e69f442249bbb3292ce1c51b6c9, type: 3}
   Level: 1
   ItemAtNextLevel: {fileID: 0}
   IngredientsNeededToUpgrade: []
-  Damage: 2
+  Damage: 3

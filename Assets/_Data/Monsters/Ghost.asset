@@ -16,7 +16,7 @@ MonoBehaviour:
   TimeBeforeHealthRegeneration: 0
   HealthRegenerationAmount: 0
   HealthRegenerationCooldown: 0
-  Damage: 0.5
+  Damage: 1.5
   AttackCooldown: 1
   StopDistanceFromTarget: 1
   DistanceToTargetFences: 3

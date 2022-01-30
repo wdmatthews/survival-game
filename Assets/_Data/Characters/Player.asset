@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   MaxHealth: 10
-  TimeBeforeHealthRegeneration: 2
-  HealthRegenerationAmount: 1
-  HealthRegenerationCooldown: 1
+  TimeBeforeHealthRegeneration: 10
+  HealthRegenerationAmount: 0.5
+  HealthRegenerationCooldown: 1.5
   MoveSpeed: 3
   JumpSpeed: 10
   GravityScale: 0.1
