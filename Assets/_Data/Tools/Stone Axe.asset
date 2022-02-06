@@ -16,10 +16,13 @@ MonoBehaviour:
   Description: An axe with a stone blade
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 0.5
   PhysicalItem: {fileID: 2534790165276146459, guid: 60a71fb4a80b4450ca95bcc54cf35259, type: 3}
   Level: 2
-  ItemAtNextLevel: {fileID: 0}
-  IngredientsNeededToUpgrade: []
+  ItemAtNextLevel: {fileID: 11400000, guid: aaf0981a316be4aaa9ae77ea5c159f9e, type: 2}
+  IngredientsNeededToUpgrade:
+  - Ingredient: {fileID: 11400000}
+    Amount: 1
+  - Ingredient: {fileID: 11400000, guid: 29f35a3ef669742b69133a1b6744c42f, type: 2}
+    Amount: 2
   Type: {fileID: 11400000, guid: 41d1260bd3e1647f1bf2c9ae3c130e3c, type: 2}
-  Damage: 3
+  Damage: 2

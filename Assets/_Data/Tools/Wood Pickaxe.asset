@@ -16,7 +16,6 @@ MonoBehaviour:
   Description: A pickace with a wood blade
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 0
   PhysicalItem: {fileID: 7659071787346935043, guid: 216bc04284309499f9abd8abac3b25d1, type: 3}
   Level: 1
   ItemAtNextLevel: {fileID: 11400000, guid: 4fcce9737e31b4c7db7290e6e73fd9bf, type: 2}

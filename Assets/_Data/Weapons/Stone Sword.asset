@@ -17,7 +17,11 @@ MonoBehaviour:
   CanBeInHotbar: 0
   CanBeInChest: 0
   PhysicalItem: {fileID: 8189501989252756614, guid: d1862e69f442249bbb3292ce1c51b6c9, type: 3}
-  Level: 1
-  ItemAtNextLevel: {fileID: 0}
-  IngredientsNeededToUpgrade: []
+  Level: 2
+  ItemAtNextLevel: {fileID: 11400000, guid: 07477976ef9e24d388e098e7cdf263ba, type: 2}
+  IngredientsNeededToUpgrade:
+  - Ingredient: {fileID: 11400000}
+    Amount: 1
+  - Ingredient: {fileID: 11400000, guid: 29f35a3ef669742b69133a1b6744c42f, type: 2}
+    Amount: 2
   Damage: 3

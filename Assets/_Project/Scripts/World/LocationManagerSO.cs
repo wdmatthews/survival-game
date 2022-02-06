@@ -8,14 +8,12 @@ namespace Project.World
     {
         [System.NonSerialized] public RegionSO Region = null;
         [System.NonSerialized] public Chunk CurrentChunk = null;
-        [System.NonSerialized] public List<Chunk> NearbyChunks = new List<Chunk>();
+        [System.NonSerialized] public List<Chunk> NearbyChunks = new();
+        [System.NonSerialized] public List<Chunk> Chunks = new();
 
         public void OnNextDay()
         {
-            CurrentChunk.RegenerateResources();
-            CurrentChunk.GrowCrops();
-
-            foreach (var chunk in NearbyChunks)
+            foreach (var chunk in Chunks)
             {
                 chunk.RegenerateResources();
                 chunk.GrowCrops();

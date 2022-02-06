@@ -152,7 +152,7 @@ namespace Project.Characters
             }
         }
 
-        protected void Move(Vector2 direction)
+        protected void Move(Vector2 direction, bool updateAngle = true)
         {
             Vector3 isoDirection = MovementDirection.CartesianToIso(direction);
             _velocity = new Vector3(
@@ -161,11 +161,17 @@ namespace Project.Characters
                 _characterData.MoveSpeed * isoDirection.z
             );
 
-            if (!Mathf.Approximately(direction.x, 0) || !Mathf.Approximately(direction.y, 0))
+            if (updateAngle &&
+                (!Mathf.Approximately(direction.x, 0) || !Mathf.Approximately(direction.y, 0)))
             {
-                float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
-                transform.eulerAngles = new Vector3(0, -45 - angle, 0);
+                Aim(direction);
             }
+        }
+
+        protected void Aim(Vector2 direction, float offsetAngle = -45)
+        {
+            float angle = Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x);
+            transform.eulerAngles = new Vector3(0, offsetAngle - angle, 0);
         }
 
         protected virtual void Use()

@@ -51,6 +51,7 @@ namespace Project.World
             _resourceNodeCount = _resourceNodes.Length;
             _structureNodeCount = _structureNodes.Length;
             _monsterNodeCount = _monsterNodes.Length;
+            _locationManager.Chunks.Add(this);
         }
 
         private void OnTriggerEnter(Collider other)

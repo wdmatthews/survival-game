@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a041ac4ef174e0ca87ee4d7d4cd4b5, type: 3}
-  m_Name: Time Manager
+  m_Script: {fileID: 11500000, guid: 9b4e9457bb6484627a6c87adb042cb93, type: 3}
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  MinutesPerDay: 5
-  MinutesPerNight: 5
-  LocationManager: {fileID: 11400000, guid: d48c57ffd86a94918b1e98c2dcbda539, type: 2}
+  Icon: {fileID: 21300000, guid: c6f7047ddcbdd47f09c014d6044a5b82, type: 3}
+  Description: A piece of iron
+  CanBeInHotbar: 0
+  CanBeInChest: 0

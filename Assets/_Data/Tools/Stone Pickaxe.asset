@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Stone Pickaxe
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 0f84bd6ffdb4c4e3a80b649a64b2127d, type: 3}
-  Description: A pickace with a wood blade
+  Description: A pickace with a stone blade
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 0
   PhysicalItem: {fileID: 7659071787346935043, guid: a9fd3de347a1f4a0f86859deabbfe260, type: 3}
-  Level: 1
-  ItemAtNextLevel: {fileID: 0}
-  IngredientsNeededToUpgrade: []
+  Level: 2
+  ItemAtNextLevel: {fileID: 11400000, guid: bd4932c50128545f0b906d6b029e7dd0, type: 2}
+  IngredientsNeededToUpgrade:
+  - Ingredient: {fileID: 11400000}
+    Amount: 1
+  - Ingredient: {fileID: 11400000, guid: 29f35a3ef669742b69133a1b6744c42f, type: 2}
+    Amount: 2
   Type: {fileID: 11400000, guid: 71d60ee73c98541de8f685011b3d53bc, type: 2}
   Damage: 2

@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c8af850e1940a69bba988a2fff32a, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  Resources: []
-  Items: []
   InitialItems:
   - Item: {fileID: 11400000, guid: 143ca40ec639b4e61aabc3e8b13b14b9, type: 2}
     Amount: 1
@@ -21,4 +19,30 @@ MonoBehaviour:
     Amount: 1
   - Item: {fileID: 11400000, guid: 0f40410f075d3472a8c54c409b33b6db, type: 2}
     Amount: 1
-  HotbarItems: []
+  Resources:
+  - Resource: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
+    Amount: 2
+  - Resource: {fileID: 11400000, guid: 29f35a3ef669742b69133a1b6744c42f, type: 2}
+    Amount: 1
+  Items:
+  - Item: {fileID: 11400000, guid: 143ca40ec639b4e61aabc3e8b13b14b9, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: e7b057bce5fde485e85abf23109e57c6, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: 4fcce9737e31b4c7db7290e6e73fd9bf, type: 2}
+    Amount: 1
+  HotbarItems:
+  - Item: {fileID: 11400000, guid: 143ca40ec639b4e61aabc3e8b13b14b9, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: e7b057bce5fde485e85abf23109e57c6, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: 4fcce9737e31b4c7db7290e6e73fd9bf, type: 2}
+    Amount: 1
+  - Item: {fileID: 0}
+    Amount: 0
+  - Item: {fileID: 0}
+    Amount: 0
+  - Item: {fileID: 0}
+    Amount: 0
+  - Item: {fileID: 0}
+    Amount: 0

@@ -24,6 +24,8 @@ namespace Project.Characters
         [SerializeField] private FastTravelWindow _fastTravelWindow = null;
         [SerializeField] private SpawnPointMessage _spawnPointMessage = null;
         [SerializeField] private MonsterManagerSO _monsterManager = null;
+        [SerializeField] private Camera _camera = null;
+        [SerializeField] private LayerMask _groundLayer = 0;
 
         private bool _isPreviewingStructure = false;
         private StructureSO _previewStructureData = null;
@@ -76,12 +78,18 @@ namespace Project.Characters
         {
             base.Update();
             _fastTravelCooldownTimer = Mathf.Clamp(_fastTravelCooldownTimer - Time.deltaTime, 0, _characterData.FastTravelCooldownDuration);
+            if (_isInWindow || _isPreviewingStructure) return;
+
+            Ray mouseRay = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Physics.Raycast(mouseRay, out RaycastHit mouseHit, Mathf.Infinity, _groundLayer);
+            Vector3 aimPosition = mouseHit.point - transform.position;
+            Aim(new Vector2(aimPosition.x, aimPosition.z), 0);
         }
 
         public void Move(InputAction.CallbackContext context)
         {
             if (_isInWindow) return;
-            Move(context.ReadValue<Vector2>());
+            Move(context.ReadValue<Vector2>(), false);
         }
 
         public void Jump(InputAction.CallbackContext context)
@@ -314,14 +322,20 @@ namespace Project.Characters
                 }
             }
 
-            if (_objectInHand) Destroy(_objectInHand.gameObject);
+            bool isUpgradingHand = _itemInHand == itemToUpgrade;
+            if (isUpgradingHand && _objectInHand) Destroy(_objectInHand.gameObject);
             int itemHotbarIndex = _inventory.GetHotbarItemIndex(itemToUpgrade);
             RemoveFromHotbar(itemHotbarIndex);
             _inventory.RemoveItem(itemToUpgrade, 1);
             _inventory.AddItem(itemToUpgrade.ItemAtNextLevel, 1);
             AddToHotbar(itemToUpgrade.ItemAtNextLevel, itemHotbarIndex);
-            _itemInHand = itemToUpgrade.ItemAtNextLevel;
-            _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
+
+            if (isUpgradingHand)
+            {
+                _itemInHand = itemToUpgrade.ItemAtNextLevel;
+                _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
+            }
+
             _upgradeWindow.Close();
             _isInWindow = false;
         }
