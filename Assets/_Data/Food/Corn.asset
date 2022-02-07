@@ -17,5 +17,5 @@ MonoBehaviour:
   CanBeInHotbar: 1
   CanBeInChest: 0
   PhysicalItem: {fileID: 0}
-  HealthRegainedFromEating: 1
+  HealthRegainedFromEating: 2.5
   FoodNeededToCook: []

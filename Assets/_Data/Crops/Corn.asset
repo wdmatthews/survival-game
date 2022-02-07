@@ -20,7 +20,9 @@ MonoBehaviour:
   MaxHealth: 1
   Prefab: {fileID: 7672049536698353846, guid: 41de529ca09864afea7893ab4df6a16a, type: 3}
   PreviewPrefab: {fileID: 6775802038563368227, guid: 967ff5c7e13c84374ab1aee2098aa9a9, type: 3}
-  Ingredients: []
+  Ingredients:
+  - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
+    Amount: 1
   GrowthTime: 3
   HarvestAmount: 9
   Food: {fileID: 11400000, guid: 6add2e022d2e04df596fc7ff52b24746, type: 2}

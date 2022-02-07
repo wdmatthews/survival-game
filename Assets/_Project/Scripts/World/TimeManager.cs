@@ -9,6 +9,7 @@ namespace Project.World
     {
         [SerializeField] private TimeManagerSO _timeManager = null;
         [SerializeField] private TimeHUD _timeHUD = null;
+        [SerializeField] private Light _light = null;
 
         private bool _hasStarted = false;
         private int _startTimer = 2;
@@ -27,7 +28,7 @@ namespace Project.World
                 if (_startTimer == 0)
                 {
                     _hasStarted = true;
-                    _timeManager.StartFirstDay();
+                    _timeManager.StartFirstDay(_light);
                 }
 
                 return;

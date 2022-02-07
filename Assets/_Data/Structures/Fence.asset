@@ -16,8 +16,8 @@ MonoBehaviour:
   Description: A destructible fence made of wood
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 0
-  MaxHealth: 1
+  PhysicalItem: {fileID: 0}
+  MaxHealth: 10
   Prefab: {fileID: 3337284083200673756, guid: f1585493234e34f598d728123fed5adf, type: 3}
   PreviewPrefab: {fileID: 5600827011983987772, guid: d5fe5ec88f12040eaa9d3d6832677345, type: 3}
   Ingredients:

@@ -15613,6 +15613,10 @@ PrefabInstance:
       value: Time Manager
       objectReference: {fileID: 0}
     - target: {fileID: 2736470989526931294, guid: d1039993db49f4d709d40fe2cf4910b4, type: 3}
+      propertyPath: _light
+      value: 
+      objectReference: {fileID: 705507994}
+    - target: {fileID: 2736470989526931294, guid: d1039993db49f4d709d40fe2cf4910b4, type: 3}
       propertyPath: _timeHUD
       value: 
       objectReference: {fileID: 717157360}

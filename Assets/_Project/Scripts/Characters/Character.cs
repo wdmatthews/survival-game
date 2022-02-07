@@ -212,13 +212,14 @@ namespace Project.Characters
             _hotbarIndex = index;
             _itemInHand = index >= 0 ? _inventory.HotbarItems[_hotbarIndex]?.Item : null;
             if (!_hand) return;
+            bool hadObjectInHand = _objectInHand;
 
-            if (oldIndex != _hotbarIndex && _objectInHand)
+            if (oldIndex != _hotbarIndex && hadObjectInHand)
             {
                 Destroy(_objectInHand.gameObject);
             }
 
-            if (_itemInHand && _itemInHand.PhysicalItem)
+            if ((oldIndex != _hotbarIndex || !hadObjectInHand) && _itemInHand && _itemInHand.PhysicalItem)
             {
                 _objectInHand = Instantiate(_itemInHand.PhysicalItem, _hand);
             }

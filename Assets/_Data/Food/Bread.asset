@@ -17,7 +17,7 @@ MonoBehaviour:
   CanBeInHotbar: 1
   CanBeInChest: 0
   PhysicalItem: {fileID: 0}
-  HealthRegainedFromEating: 1
+  HealthRegainedFromEating: 5
   FoodNeededToCook:
   - Food: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
-    Amount: 1
+    Amount: 3

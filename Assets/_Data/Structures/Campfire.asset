@@ -16,10 +16,12 @@ MonoBehaviour:
   Description: A campfire to travel quickly to
   CanBeInHotbar: 0
   CanBeInChest: 0
-  CooldownDuration: 0
+  PhysicalItem: {fileID: 0}
   MaxHealth: 0
   Prefab: {fileID: 3337284083200673756, guid: 29bc65e7956fa49f099bab8f1a988f43, type: 3}
   PreviewPrefab: {fileID: 5600827011983987772, guid: f86a60f0ec98a43dd82f88678c924c3c, type: 3}
   Ingredients:
   - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
+    Amount: 1
+  - Ingredient: {fileID: 11400000, guid: 81015b6a1554648c3bc9aaee547d46e9, type: 2}
     Amount: 1

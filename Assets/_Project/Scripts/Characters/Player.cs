@@ -201,7 +201,7 @@ namespace Project.Characters
         {
             if (_isInWindow) return;
             base.Interact();
-            _isInWindow = true;
+            if (!_nearbyTent) _isInWindow = true;
 
             if (_nearbyChest) _chestWindow.Open(_nearbyChest);
             else if (_nearbyWorkstation)

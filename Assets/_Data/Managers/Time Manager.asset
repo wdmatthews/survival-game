@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Time Manager
   m_EditorClassIdentifier: 
   MinutesPerDay: 5
-  MinutesPerNight: 5
+  MinutesPerNight: 2
+  NightLightIntensity: 0.5
   LocationManager: {fileID: 11400000, guid: d48c57ffd86a94918b1e98c2dcbda539, type: 2}
