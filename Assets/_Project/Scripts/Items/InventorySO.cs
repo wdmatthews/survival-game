@@ -65,7 +65,8 @@ namespace Project.Items
 
             if (stack.Amount <= 0)
             {
-                if (HotbarItemsByItemData.ContainsKey(item)) RemoveHotbarItem(item);
+                int hotbarIndex = HotbarItems.IndexOf(stack);
+                if (hotbarIndex >= 0) RemoveHotbarItem(item, hotbarIndex);
                 Items.Remove(stack);
                 ItemsByItemData.Remove(item);
             }

@@ -48,14 +48,19 @@ namespace Project.Growing
 
         private void UpdateModels()
         {
-            MeshFilter meshFilter = _cropData.Stages[_cropData.GrowthTime - _growTimer];
+            int stageIndex = _cropData.GrowthTime - _growTimer;
+            MeshFilter meshFilter = _cropData.Stages[stageIndex];
             Mesh mesh = meshFilter.sharedMesh;
             Material[] materials = meshFilter.GetComponent<MeshRenderer>().sharedMaterials;
+            float position = _cropData.StagePositions[stageIndex];
 
             for (int i = _meshFilters.Length - 1; i >= 0; i--)
             {
-                _meshFilters[i].mesh = mesh;
+                MeshFilter filter = _meshFilters[i];
+                filter.mesh = mesh;
                 _renderers[i].materials = materials;
+                filter.transform.position = new Vector3(
+                    filter.transform.position.x, position, filter.transform.position.z);
             }
         }
     }

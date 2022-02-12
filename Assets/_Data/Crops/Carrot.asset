@@ -10,29 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dcd29c8f1ad948dc8caf622164e66c8, type: 3}
-  m_Name: Corn
+  m_Name: Carrot
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 3ad4196b2eaad4c19a2d95f9fad8b444, type: 3}
-  Description: Seeds that can eventually grow into corn
+  Icon: {fileID: 21300000, guid: 7c42c51a53f314c82b9ae346648d65a9, type: 3}
+  Description: Seeds that can eventually grow into carrots
   CanBeInHotbar: 0
   CanBeInChest: 0
   PhysicalItem: {fileID: 0}
   MaxHealth: 1
-  Prefab: {fileID: 7672049536698353846, guid: 41de529ca09864afea7893ab4df6a16a, type: 3}
+  Prefab: {fileID: 7672049536698353846, guid: 1c52f5a8c459645a1b5a59006e0de103, type: 3}
   PreviewPrefab: {fileID: 6775802038563368227, guid: 967ff5c7e13c84374ab1aee2098aa9a9, type: 3}
   Ingredients:
   - Ingredient: {fileID: 11400000, guid: 368f5f9ab4dd64960ad6aaa0acc0b4c1, type: 2}
     Amount: 1
-  GrowthTime: 3
+  GrowthTime: 1
   HarvestAmount: 9
-  Food: {fileID: 11400000, guid: 6add2e022d2e04df596fc7ff52b24746, type: 2}
+  Food: {fileID: 11400000, guid: 03b4cf829cd7747d0808d8ee0e7c55ec, type: 2}
   Stages:
-  - {fileID: 8286265472058684025, guid: 5bd92ceed76c24dad95b008d1bcd1ef5, type: 3}
-  - {fileID: 2384921075937316600, guid: 25b6eecfd9db6420a9c8aaf7e8e5cb18, type: 3}
-  - {fileID: -7497062305566185772, guid: 0c5f33967969d439db9b5890f81f64c9, type: 3}
-  - {fileID: -6400281290468069383, guid: 892864c20169c416e92a5631ac05b2e3, type: 3}
+  - {fileID: -6539226564607051213, guid: e0fa0d7ab0e6f48dbb3be97d413d4b71, type: 3}
+  - {fileID: -6539226564607051213, guid: e0fa0d7ab0e6f48dbb3be97d413d4b71, type: 3}
   StagePositions:
-  - 0
-  - 0
-  - 0
-  - 0
+  - -0.5
+  - -0.25

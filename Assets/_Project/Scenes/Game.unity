@@ -410,6 +410,8 @@ MonoBehaviour:
   _inventory: {fileID: 11400000, guid: 96725d103993b4709b6dc17ce23f5bdb, type: 2}
   _cookableFoods:
   - {fileID: 11400000, guid: 03f8a62e324684891a60f917f280a4bf, type: 2}
+  - {fileID: 11400000, guid: 59564b320084745488999c3e71b6b650, type: 2}
+  - {fileID: 11400000, guid: b7c114525a9524f78b738bbee0e0d369, type: 2}
 --- !u!114 &54123172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2669,6 +2671,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93f3c47f238b0437c88a32be6303ace7, type: 2}
   - {fileID: 11400000, guid: 1307c1b93e9144b6d9b79c51dcdf6600, type: 2}
   - {fileID: 11400000, guid: 0872e8b4d8f884c8a88ae831617d0be3, type: 2}
+  - {fileID: 11400000, guid: d0a522a463d4f41648015c7172879a8a, type: 2}
 --- !u!1001 &457281029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13282,7 +13285,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778781, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

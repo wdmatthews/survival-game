@@ -102,7 +102,11 @@ namespace Project.Characters
         {
             if (_isInWindow) return;
             if (context.performed) Use();
-            else if (context.canceled) _shouldUse = false;
+            else if (context.canceled)
+            {
+                _shouldUse = false;
+                _justStartedUsing = false;
+            }
         }
 
         public void Interact(InputAction.CallbackContext context)

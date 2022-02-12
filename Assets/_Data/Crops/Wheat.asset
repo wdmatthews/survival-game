@@ -29,3 +29,6 @@ MonoBehaviour:
   Stages:
   - {fileID: -7372469989800846595, guid: 20a217f531be540f0abe3b1caff2d741, type: 3}
   - {fileID: 1704562073454067879, guid: 3cfe6ae23159c4cb0bba7f132c528533, type: 3}
+  StagePositions:
+  - 0
+  - 0

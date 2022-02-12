@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b74b8ad80ed3d4812a8378fe9d94ac5b, type: 3}
-  m_Name: Bread
+  m_Name: Pie
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 0f8d30c2429d34024a3b0663371075ff, type: 3}
-  Description: A slice of bread
+  Icon: {fileID: 21300000, guid: b936d602257ba4024ba4e2aa5bc14180, type: 3}
+  Description: A carrot pie
   CanBeInHotbar: 1
   CanBeInChest: 0
   PhysicalItem: {fileID: 0}
-  HealthRegainedFromEating: 3
+  HealthRegainedFromEating: 10
   FoodNeededToCook:
-  - Food: {fileID: 11400000, guid: 8141968ebd4184cea92ec4610118c327, type: 2}
+  - Food: {fileID: 11400000, guid: 03b4cf829cd7747d0808d8ee0e7c55ec, type: 2}
     Amount: 3
+  - Food: {fileID: 11400000, guid: 03f8a62e324684891a60f917f280a4bf, type: 2}
+    Amount: 2

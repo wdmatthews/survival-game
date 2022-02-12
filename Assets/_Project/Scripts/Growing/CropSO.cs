@@ -10,5 +10,6 @@ namespace Project.Growing
         public int HarvestAmount = 9;
         public FoodSO Food = null;
         public MeshFilter[] Stages = { };
+        public float[] StagePositions = { };
     }
 }

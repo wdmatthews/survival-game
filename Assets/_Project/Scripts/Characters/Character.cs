@@ -29,6 +29,7 @@ namespace Project.Characters
         protected Transform _objectInHand = null;
         protected int _hotbarIndex = 0;
         protected bool _shouldUse = false;
+        protected bool _justStartedUsing = false;
         protected StructureNode _nearbyStructureNode = null;
         protected List<Crop> _nearbyCrops = new List<Crop>();
         protected Workstation _nearbyWorkstation = null;
@@ -48,7 +49,11 @@ namespace Project.Characters
 
             _animator.SetBool("Is Moving", !Mathf.Approximately(_velocity.x, 0) || !Mathf.Approximately(_velocity.z, 0));
 
-            if (_shouldUse && _itemInHand) Use();
+            if (_shouldUse && _itemInHand)
+            {
+                if (_justStartedUsing) _justStartedUsing = false;
+                else Use();
+            }
         }
 
         protected void FixedUpdate()
@@ -179,6 +184,7 @@ namespace Project.Characters
             if (_animator.GetCurrentAnimatorStateInfo(1).IsName("Use")) return;
 
             _shouldUse = true;
+            _justStartedUsing = true;
 
             foreach (var crop in _nearbyCrops)
             {
